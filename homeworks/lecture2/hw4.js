@@ -8,6 +8,7 @@ function f() {
   }
   console.log(a);
 }
+//7
 
 // 2. When executed, what value will be output?
 function f() {
@@ -16,6 +17,7 @@ function f() {
   }
   console.log(a);
 }
+//5  var has function scope
 
 // 3. When executed, what value will be output?
 function f() {
@@ -23,6 +25,7 @@ function f() {
 }
 f();
 console.log(a);
+//3  a is treated as a global variable because it's not declared with let, var, or const
 
 // 4.
 var a = 5;
@@ -35,6 +38,7 @@ function second() {
 }
 first();
 second();
+//6
 
 // 5.
 var a = 5;
@@ -42,6 +46,9 @@ function f() {
   var a = 7;
   console.log(a);
 }
+//7
+//var defined in function scope make a function scope vairable and not overwrite the global var
+//var inside a function are local to that function
 
 // 6.
 var a = 1;
@@ -52,3 +59,4 @@ function b() {
 }
 b();
 console.log(a);
+//10

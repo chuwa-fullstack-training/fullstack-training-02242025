@@ -26,6 +26,7 @@ function f() {
 f();
 console.log(a);
 //3  a is treated as a global variable because it's not declared with let, var, or const
+//implicitly creates a global variable
 
 // 4.
 var a = 5;
@@ -47,7 +48,7 @@ function f() {
   console.log(a);
 }
 //7
-//var defined in function scope make a function scope vairable and not overwrite the global var
+//var defined in function scope make a function scope vairable and not overwrite the global
 //var inside a function are local to that function
 
 // 6.
@@ -59,4 +60,6 @@ function b() {
 }
 b();
 console.log(a);
-//10
+//1
+//the function a() {} inside b() gets hoisted and make a new vairable a inside local scope of b()
+//global var unchanged

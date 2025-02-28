@@ -4,14 +4,14 @@
 var x;
 
 if (x !== 3) {
-  console.log(y);
+  console.log(y); // 5
   var y = 5;
   if (y === 5) {
     var x = 3;
   }
-  console.log(y);
+  console.log(y);// 5
 }
-if (x === 3) {
+if (x === 3) { //not true
   console.log(y);
 }
 
@@ -20,7 +20,7 @@ if (x === 3) {
 var x = 3;
 if (x === 3) {
   var x = 2;
-  console.log(x);
+  console.log(x); // 2
 }
-console.log(x);
+console.log(x); // 2
 

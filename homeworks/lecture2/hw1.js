@@ -5,6 +5,7 @@
 */
 function extend(o, p) {
     // implement your code here
+    return Object.assign(o, p);
 }
 
 /*
@@ -13,6 +14,10 @@ function extend(o, p) {
 */
 function union(o, p) {
     // implement your code here
+    const newObj = {}
+    Object.assign(newObj, p)
+    Object.assign(newObj, o)
+    return newObj
 }
 
 /*
@@ -21,6 +26,14 @@ function union(o, p) {
 */
 function restrict(o, p) {
     // implement your code here
+    for (const key in o) {
+        if (Object.prototype.hasOwnProperty.call(o, key)) {
+            if (!Object.prototype.hasOwnProperty.call(p, key)) {
+                delete o[key]
+            }         
+        }
+    }
+    return o
 }
 
 /*
@@ -30,4 +43,13 @@ function restrict(o, p) {
 */
 function intersection(o, p) {
     // implement your code here
+    const newObj = {}
+    for (const key in o) {
+        if (Object.prototype.hasOwnProperty.call(o, key)) {
+            if (Object.prototype.hasOwnProperty.call(p, key)) {
+                newObj[key] = o[key]
+            }
+        }
+    }
+    return newObj
 }

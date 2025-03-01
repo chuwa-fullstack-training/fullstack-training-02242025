@@ -13,4 +13,21 @@
  */
 function User() {
     // implement here
+    let password = '';
+
+    function setPassword(newPassword) {
+        if (newPassword.length < 6) {
+            throw new Error('Password must be at least 6 characters long');
+        }
+        password = newPassword;
+    }
+
+    function checkPassword(inputPassword) {
+        return password === inputPassword;
+    }
+
+    return {
+        setPassword: setPassword,
+        checkPassword: checkPassword
+    }
 }

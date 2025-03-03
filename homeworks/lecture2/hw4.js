@@ -8,6 +8,7 @@ function f() {
   }
   console.log(a);
 }
+//Nothing, will print out 7 if f() is called.
 
 // 2. When executed, what value will be output?
 function f() {
@@ -16,6 +17,7 @@ function f() {
   }
   console.log(a);
 }
+//Nothing, Print out 5 if f is called.
 
 // 3. When executed, what value will be output?
 function f() {
@@ -23,6 +25,7 @@ function f() {
 }
 f();
 console.log(a);
+//It will print out 3;
 
 // 4.
 var a = 5;
@@ -35,6 +38,7 @@ function second() {
 }
 first();
 second();
+//Print out 6
 
 // 5.
 var a = 5;
@@ -42,6 +46,7 @@ function f() {
   var a = 7;
   console.log(a);
 }
+//Nothing. Print out 7 when f() is called
 
 // 6.
 var a = 1;
@@ -52,3 +57,4 @@ function b() {
 }
 b();
 console.log(a);
+//Print out 1, a inside b is hoisting to the top and no longer the global a, so global a remain 1;

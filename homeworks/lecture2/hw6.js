@@ -9,7 +9,11 @@ function largestElement(list) {
 // 2. Write function that reverses a list, preferably in place.
 function reverseList(list) {
     // implement your code here
-    return list.reverse();
+    for(let i = 0, j=list.length-1; i<j; i++, j--){
+        var temp = list[i];
+        list[i] = list[j];
+        list[j] = temp;
+    }
 }
 
 // 3. Write a function that checks whether an element occurs at least twice in a list.

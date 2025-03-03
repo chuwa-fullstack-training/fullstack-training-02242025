@@ -13,4 +13,15 @@
  */
 function User() {
     // implement here
+    let password = null;
+    this.setPassword = function(setInput){
+        if(password !== null){
+            password = setInput;
+        }else{
+             throw new Error("Error");
+        }
+    }
+    this.checkPassword = function(checkInput){
+        return password===checkInput;
+    }
 }

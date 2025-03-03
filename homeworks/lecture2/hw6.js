@@ -14,6 +14,7 @@ function reverseList(list) {
         list[i] = list[j];
         list[j] = temp;
     }
+    return list;
 }
 
 // 3. Write a function that checks whether an element occurs at least twice in a list.

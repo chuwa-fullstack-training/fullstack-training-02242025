@@ -11,9 +11,9 @@ function pickCoins() {
             for (let c = 0; c <= 4; c++) {
                 for (let d = 0; d <= 2; d++) {
                     let sum = a * 1 + b * 5 + c * 25 + d * 50;
-                    if (sum === 100 && (a+b+c+d<=48) {
+                    if (sum === 100 && (a+b+c+d<=48)){
                         output.push([a, b, c, d]);
-                    } else if (sum > 100 || (a+b+c+d>48) {
+                    } else if (sum > 100 || (a+b+c+d>48)) {
                         break;
                     }
                 }
@@ -28,3 +28,4 @@ function pickCoins() {
         console.log(result2);
     }
 }
+pickCoins();

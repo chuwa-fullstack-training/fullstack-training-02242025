@@ -34,13 +34,25 @@ NAN
 //"A"-"B" is not a number(NAN), 2 is a number, NAN + any number is still NAN.
 
 console.log("0 || 1 = "+(0 || 1));
+0 || 1 = 1
+//"0 || 1 = " is string that remain the same, then (0 || 1) is the OR operation that will return 1; + will concate the string part and operation result, gives 0 || 1 = 1;
 
 console.log("1 || 2 = "+(1 || 2));
+1 || 2 = 1
+//"1 || 2 = " is string that remain the same, then (1 || 2) is the OR operation, 1 is true so it will not check 2 and return 1, then string and 1 are concated to our result.
 
 console.log("0 && 1 = "+(0 && 1));
+0 && 1 = 0
+//"0 && 1 = " is string that remain the same, then (0 && 1) is the AND operation that will return 0; + will concate the string part and operation result, gives 0 && 1 = 0;
 
 console.log("1 && 2 = "+(1 && 2));
+1 && 2 = 2
+//The string part remain the same, (1 && 2) AND operation, 1 is truthy, 2 is truthy, so it will return the last operand 2, after concatenation, it gives 1 && 2 = 2;
 
 console.log(false == '0')
+true
+// == compares only value, false is 0 then false == "0"
 
 console.log(false === '0')
+false
+//=== compares value and type. The type of false is not string, so it's false.

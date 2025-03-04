@@ -12,4 +12,10 @@
  */
 const intersection = (nums1, nums2) => {
   // Your solution here
+  return nums1.reduce((acc, value)=>{
+    if(nums2.includes(value) && !acc.includes(value)){
+      acc.push(value);
+    }
+    return acc;
+  },[]);
 };

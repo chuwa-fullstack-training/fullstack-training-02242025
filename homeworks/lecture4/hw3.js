@@ -8,3 +8,25 @@
  */
 
 // your code here
+class Singleton{
+    static instance = null;
+
+    constructor(){
+        if(!Singleton.instance){
+            Singleton.instance = this;
+        }
+        return Singleton.instance;
+    }
+}
+
+const Singleton = (function () {
+    let instance;
+
+    function Singleton(){
+        if(instance){
+            return instance;
+        }
+        instance = this;
+    }
+    return Singleton;
+})();

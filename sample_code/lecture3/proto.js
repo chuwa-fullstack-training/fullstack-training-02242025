@@ -37,6 +37,10 @@ function Dog(name, age) {
   return dog;
 }
 
+//Dog.prototype
+// the prototype for instances created using Dog
+//The prototype property is an object attached to the constructor function,
+//which allows instances created by that constructor to inherit properties and methods.
 Dog.prototype.bark = function () {
   console.log('Bark!');
 };
@@ -67,3 +71,13 @@ Cat.prototype.sayMyName = function () {
 const cat = new Cat('cat', 3);
 cat.sayMyName(); // My name is cat
 // cat.sayMyName.call(cat);
+
+//functions in JavaScript are objects, and they follow a different prototype chain than instances created by them
+//cat.__proto__ points to Cat.prototype
+//This means that cat inherits properties and methods from Cat.prototype
+//Every function in JavaScript is an instance of Function, so Cat.__proto__ points to Function.prototype.
+//This means Cat itself (as a function) inherits methods from Function.prototype (like call, apply, and bind).
+//the cat instance does not have bind, call, or apply methods because these methods exist on Function.prototype, and cat is not a function
+//cat → Cat.prototype → Object.prototype → null
+//The constructor property is used to reference the function that created the object.
+//call new User(), it does indeed invoke the constructor function which is the Cat,

@@ -1,5 +1,12 @@
 function counter() {
-    // implement here
+    let rsl = 0
+    function count(a) {
+        if(arguments.length === 1) {
+            rsl += a
+        }
+        return rsl
+    }
+    return count
 }
 
 let count = counter();

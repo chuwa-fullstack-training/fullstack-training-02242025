@@ -8,6 +8,8 @@ function f() {
   }
   console.log(a);
 }
+// 7
+// 10>5, reassign a to 7
 
 // 2. When executed, what value will be output?
 function f() {
@@ -16,6 +18,7 @@ function f() {
   }
   console.log(a);
 }
+//5
 
 // 3. When executed, what value will be output?
 function f() {
@@ -23,6 +26,8 @@ function f() {
 }
 f();
 console.log(a);
+// 3
+// a is a global variable
 
 // 4.
 var a = 5;
@@ -35,6 +40,8 @@ function second() {
 }
 first();
 second();
+//6
+// a is a global variable
 
 // 5.
 var a = 5;
@@ -42,6 +49,8 @@ function f() {
   var a = 7;
   console.log(a);
 }
+//7
+// a is reassigned
 
 // 6.
 var a = 1;
@@ -52,3 +61,5 @@ function b() {
 }
 b();
 console.log(a);
+// 1
+// function declaration is hoisted and create a local variable a, local a is assigned to 10, global a is not updated

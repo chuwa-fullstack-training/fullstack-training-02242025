@@ -11,6 +11,33 @@
  * user.checkPassword('123'); // false
  * user.password; // undefined
  */
-function User() {
-    // implement here
-}
+ class User {
+     constructor() {
+         let password;
+         this.setPassword = function(newPassword) {
+             if (password !== undefined) {
+                 throw new Error("password is already defined");
+             }
+             password = newPassword;
+         }
+
+         this.checkPassword = function(passwordToCheck) {
+             return password === passwordToCheck;
+         }
+
+         Object.defineProperty(this, "password", {
+             get: function() {
+                 return undefined;
+             },
+         });
+     }
+  }
+
+const user = new User();
+user.setPassword('123456');
+console.log(user.checkPassword('123456')); // true
+console.log(user.checkPassword('123')); // false
+user.password;
+// user.setPassword('123'); // Error
+// user.checkPassword('123'); // false
+// user.password;

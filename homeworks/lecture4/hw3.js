@@ -8,3 +8,26 @@
  */
 
 // your code here
+class Singleton {
+    constructor() {
+        if (Singleton.instance) {
+            return Singleton.instance;
+        }
+        Singleton.instance = this;
+    }
+}
+var Singleton = (function () {
+    var instance;
+    function Singleton() {
+        if (instance) {
+            return instance;
+        }
+        instance = this;
+    }
+    return Singleton;
+})();
+
+// const instance1 = new Singleton();
+// const instance2 = new Singleton();
+
+// console.log(instance1 === instance2);

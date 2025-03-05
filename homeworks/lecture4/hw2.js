@@ -1,11 +1,16 @@
 // ONLY use map, filter, reduce to solve the following problems:
 
 // 1. Given an array of numbers, return an array of numbers that are doubled.
+let input = [1,2,3,4,5,6,7,8,9,10];
+let output = input.map(num => num * 2);
 
 // 2. Given an array of numbers, return an array of numbers that are even.
-
+let evenOuput = input.map(num => num % 2 === 0);
 // 3. Reverse the string: "Hello World" -> "dlroW olleH"
 
+let str = "Hello World";
+let strOutput = str.split('').reduce((reversed, curr) => curr + reversed,'');
+console.log(strOutput);
 /**
  * 4. Flatten the array of arrays to a single array:
  * Example 1:
@@ -15,3 +20,8 @@
  * const arr = [[0, 1], [2, 3], [4, [5, 6]]];
  * Expected output: [0, 1, 2, 3, 4, 5, 6]
  */
+ const arr = [[0, 1], [2, 3], [4, [5, 6]]];
+ const res = (arr) => arr.reduce((acc, curr) => acc.concat(Array.isArray(curr) ? res(curr) : curr), []);
+
+ console.log(res(arr));  // Output: [0, 1, 2, 3, 4, 5, 6]
+ 

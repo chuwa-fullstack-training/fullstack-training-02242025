@@ -19,6 +19,17 @@
  */
 function numIdenticalPairs(nums) {
   // implement here
+  let map = {};
+  let res = 0;
+  for (let i of nums) {
+    if (map[i]) {
+      res = res + map[i];
+      map[i] = map[i] + 1;
+    } else {
+      map[i] = 1;
+    }
+  }
+  return res;
 }
 
 /**
@@ -26,4 +37,9 @@ function numIdenticalPairs(nums) {
  */
 function removeVowels(s) {
   // implement here
+  let arr = s.split("");
+  for (let i = arr.length-1; i >= 0; i--) {
+    if ("aeiouAEIOU".includes(arr[i])) arr.splice(i,1);
+  }
+  return arr.join("");
 }

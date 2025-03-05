@@ -18,12 +18,53 @@
  * 1 <= nums[i] <= 100
  */
 function numIdenticalPairs(nums) {
-  // implement here
+  let count = 0;
+  let countMap = {}; // HashMap to store frequencies
+
+  for (let num of nums) {
+    if (countMap[num]) {
+      count += countMap[num]; // Add previous occurrences as pairs
+      countMap[num]++;
+    } else {
+      countMap[num] = 1;
+    }
+  }
+
+  return count;
 }
+
+console.log(numIdenticalPairs([1, 2, 3, 1, 1, 3])); // Output: 4
+console.log(numIdenticalPairs([1, 1, 1, 1])); // Output: 6
+console.log(numIdenticalPairs([1, 2, 3])); // Output: 0
 
 /**
  * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
  */
 function removeVowels(s) {
-  // implement here
+  return s.replace(/[aeiou]/gi, "");
 }
+
+console.log(removeVowels("hello")); // Output: "hll"
+console.log(removeVowels("leetcode")); // Output: "ltcd"
+console.log(removeVowels("AEIOUaeiou")); // Output: "" (all vowels removed)
+console.log(removeVowels("programming")); // Output: "prgrmmng"
+console.log(removeVowels("xyz")); // Output: "xyz" (no vowels removed)
+
+function removeVowels2(s) {
+  let vowels = "aeiouAEIOU";
+  let result = "";
+
+  for (let char of s) {
+    if (!vowels.includes(char)) {
+      result += char;
+    }
+  }
+
+  return result;
+}
+
+console.log(removeVowels2("hello")); // Output: "hll"
+console.log(removeVowels2("leetcode")); // Output: "ltcd"
+console.log(removeVowels2("AEIOUaeiou")); // Output: ""
+console.log(removeVowels2("programming")); // Output: "prgrmmng"
+console.log(removeVowels2("xyz")); // Output: "xyz"

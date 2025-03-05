@@ -19,8 +19,8 @@ class Singleton{
     }
 }
 
-const Singleton = (function () {
-    let instance;
+var Singleton = (function () {
+    var instance;
 
     function Singleton(){
         if(instance){

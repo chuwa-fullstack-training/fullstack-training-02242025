@@ -8,3 +8,27 @@
  */
 
 // your code here
+
+// ES5 Singleton Pattern
+function Singleton() {
+    if (Singleton.instance) {
+        return Singleton.instance;
+    }
+    
+    Singleton.instance = this;
+}
+
+// ES6 Singleton Pattern
+class Singleton{
+    constructor(){
+        if (Singleton.instance){
+            return Singleton.instance
+        }
+
+        Singleton.instance = this
+    }
+}
+
+ const instance1 = new Singleton();
+ const instance2 = new Singleton();
+ console.log(instance1 === instance2); // Output: true

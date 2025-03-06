@@ -22,7 +22,7 @@ const cloneDeepWithLoop = (obj) => {
         cloned.set(item, copy)
 
         Object.keys(item).forEach(key => {
-            copy[key] = cloneObject(item[key])
+            copy[key] = cloneObject(item[key]) // recursively explore and copy objects
         })
 
         return copy

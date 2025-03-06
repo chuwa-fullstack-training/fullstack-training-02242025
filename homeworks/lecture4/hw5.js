@@ -12,7 +12,7 @@ const cloneDeepWithLoop = (obj) => {
     function deepClone(value){
         if (typeof value !== 'object' || value === null) return value;
         if (visited.has(value)) return visited.get(value);
-        if (Array.isArray(value)){
+        if (Array.isArray(value)){ //so if object is only arr, it's treated differently
             let arr_copy =[];
             visited.set(value, arr_copy);
             value.forEach((item, index)=>{

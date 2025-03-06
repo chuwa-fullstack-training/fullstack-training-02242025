@@ -13,7 +13,11 @@ Promise.resolve(1)
     console.log(res);
   });
 
-// // 2
+//1,2
+//the promise has already been resolved with the value 1 and there are no errors, this handler is skipped.
+
+
+// 2
 Promise.reject(1)
   .then(res => {
     console.log(res);
@@ -26,6 +30,8 @@ Promise.reject(1)
   .then(res => {
     console.log(res);
   });
+//1, 3
+
 
 //3
 function runAsync(x) {
@@ -45,3 +51,6 @@ function runReject(x) {
 Promise.all([runAsync(1), runReject(4), runAsync(3), runReject(2)])
   .then(res => console.log(res))
   .catch(err => console.log(err));
+
+//Error: 2 after 2s
+//If any one promise rejects, it will immediately trigger the .catch() callback with the rejection reason

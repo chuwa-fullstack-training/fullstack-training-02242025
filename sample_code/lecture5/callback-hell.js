@@ -1,11 +1,15 @@
+//A callback is a function passed
+// as an argument to another function and executed later, usually after some asynchronous operation completes.
 
 // Callback hell example
+//模拟api 花一秒时间发送request拿到user info
 function getUser(callback) {
   setTimeout(() => {
     const data = { name: 'John', age: 30 };
     callback(data);
   }, 1000);
 }
+
 
 function checkOrder(data, callback) {
   setTimeout(() => {

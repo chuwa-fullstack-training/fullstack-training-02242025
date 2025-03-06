@@ -79,6 +79,14 @@ function displayData(data) {
 //   .then(data => displayData(data))
 //   .catch(error => console.error(error));
 
+//still work but unessary
+// getUser()
+//     .then(data => {
+//         return checkOrder(data)  // This returns a promise
+//             .then(order => processPayment(order));  // Another nested then()
+//     })
+
+//if the function argument is the last provided parameter,we can use below style
 getUser()
   .then(checkOrder)
   .then(getDiscount)

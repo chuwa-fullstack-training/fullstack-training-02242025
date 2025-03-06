@@ -39,8 +39,7 @@ function wait(delay) {
     setTimeout(resolve, delay);
   });
 }
-//return new Promise(...) immediately executes
-//the executor function, which is the function passed to the Promise constructor.
+//return new Promise(...) immediately executes the executor function,
+//which is the function passed to the Promise constructor.
+
 wait(2000).then(() => console.log('Hello!'));
-
-

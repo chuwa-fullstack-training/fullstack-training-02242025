@@ -8,7 +8,7 @@
 function checkValidHTML(html) {
     // implement your solution here
     let tag_list = [];
-    let regex = /<\/?([a-zA-Z0-9]+)[^>]*>/g;
+    let regex = /<\/?([a-zA-Z0-9]+)[^>]*>/g; //g here is for global flag, find from the first to the last match.
     let match;
      while ((match = regex.exec(html)) !== null) {
          // console.log(match);

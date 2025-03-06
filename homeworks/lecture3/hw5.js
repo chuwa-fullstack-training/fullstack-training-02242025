@@ -13,4 +13,12 @@
  */
 function User() {
     // implement here
+    let password = '';
+    this.setPassword = function(a){
+        password = a;
+    }
+    this.checkPassword =function(a){
+        return password === a;
+    }
+    
 }

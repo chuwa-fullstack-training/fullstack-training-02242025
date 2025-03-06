@@ -6,8 +6,12 @@ function Person(name) {
 }
 
 const person = new Person('Aaron');
+//Person is called with new Person('Aaron'),
+//this inside Person refers to the newly created object { name: 'Aaron' }
 person.sayName(); // Aaron
 
+//sayName is an arrow functio
+//it always remembers the this value from when it was defined
 const sayPersonName = person.sayName;
 sayPersonName(); // undefined
 sayPersonName.call(person); // Aaron

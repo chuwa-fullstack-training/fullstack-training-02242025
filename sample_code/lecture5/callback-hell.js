@@ -1,3 +1,4 @@
+
 // Callback hell example
 function getUser(callback) {
   setTimeout(() => {

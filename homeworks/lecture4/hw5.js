@@ -8,9 +8,24 @@
 
 const cloneDeepWithLoop = (obj) => {
     // Implement the function here
-    let visied = new Map();
+    let visited = new Map();
     function deepClone(value){
-        
+        if (typeof value !== 'object' || value === null) return value;
+        if (visited.has(value)) return visited.get(value);
+        if (Array.isArray(value)){
+            let arr_copy =[];
+            visited.set(value, arr_copy);
+            value.forEach((item, index)=>{
+                arr_copy[index] = deepClone(item);
+            });
+            return arr_copy;
+        }
+        let copied={};
+        visited.set(value, copied);
+        Object.keys(value).forEach((key)=>{
+            copied[key] = deepClone(value[key]);
+        })
+    return copied;
     }
-    deepClone(obj);
+return deepClone(obj);
 }

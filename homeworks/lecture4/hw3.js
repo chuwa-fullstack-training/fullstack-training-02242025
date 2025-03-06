@@ -8,3 +8,26 @@
  */
 
 // your code here
+
+
+//ES5
+
+function Singleton(data=null){
+  if(!Singleton.instance){
+    this.data = data;
+    Singleton.instance = this; 
+  }
+  return Singleton.instance;
+}
+
+//ES6
+
+class Singleton{
+  constructor(data= null){
+    if (!Singleton.instance){
+      this.data = data;
+      Singleton.instance = this;
+    }
+    return Singleton.instance;
+  }
+}

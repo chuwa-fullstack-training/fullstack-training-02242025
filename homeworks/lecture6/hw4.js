@@ -6,4 +6,17 @@
  */
 function format(num) {
   // your code here
+  const integerPart = num.split(".")[0].split("").reverse();
+  const decimalPart = num.split(".").length == 2 ? "." + num.split(".")[1] : "";
+  const formatedInteger = integerPart.reduce((acc, value, index)=>{
+    if(index != 0 && index%3 === 0){
+      acc = "," + acc;
+    }
+    return String(value) + acc;
+  }, "");
+  return formatedInteger + decimalPart;
 }
+
+
+const formattedNum = format("34125435432.32432");
+console.log(formattedNum);

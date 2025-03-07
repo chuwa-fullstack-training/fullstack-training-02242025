@@ -17,12 +17,12 @@ function cloneDeep(obj, visited) {
     if (typeof obj !== "object" || obj === null) return obj;
 
     if (visited.has(obj)) return visited.get(obj);
-    
-    let copy = Array.isArray(obj) ? [] : {}; // Create new object/array
-    visited.set(obj, copy); // Track object to handle circular refs
+
+    let copy = Array.isArray(obj) ? [] : {};
+    visited.set(obj, copy);
 
     Object.keys(obj).forEach(key => {
-        copy[key] = deepClone(obj[key], seen); // Recursively clone
+        copy[key] = deepClone(obj[key], seen);
     });
 
     return copy;

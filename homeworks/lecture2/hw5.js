@@ -14,7 +14,7 @@ if (x !== 3) {
 if (x === 3) {
   console.log(y);
 }
-
+//housting确实能提到前面，但是不影响赋值，undefined，5，5
 
 // 2.
 var x = 3;
@@ -23,4 +23,4 @@ if (x === 3) {
   console.log(x);
 }
 console.log(x);
-
+//2，2

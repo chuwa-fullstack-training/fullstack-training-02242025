@@ -1,0 +1,14 @@
+.DS_Store
+*/**/node_modules
+
+Full Stack Training.mindnode
+TypeScript.mindnode
+images/
+pre_slides/
+pre_draw/
+books/
+.idea/
+.env
+
+marp-diagrams/
+projects/

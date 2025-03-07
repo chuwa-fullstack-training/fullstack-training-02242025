@@ -8,3 +8,28 @@
  */
 
 // your code here
+//ES5:
+var Singleton = (function () {
+    let instance;
+
+    function Singleton() {
+        if (instance) {
+            return instance;
+        }
+        instance = this;
+    }
+
+    return Singleton;
+})();
+
+//ES6:
+class Singleton {
+    static instance = null;
+
+    constructor() {
+        if (Singleton.instance) {
+            return Singleton.instance;
+        }
+        Singleton.instance = this;
+    }
+}

@@ -51,3 +51,7 @@ Promise.all([runAsync(1), runReject(4), runAsync(3), runReject(2)])
   .catch(err => console.log(err));
 
 //Error:2
+//Promise.all wait for all the functions get executed and if there is an reject, reject for all immediately
+//For each fucntion, runAsync(1) will return resolve(1) after 1s, runReject(4) will reject(4) after 4s, runAsync(3) will resolve(3) after 3s, runReject(2) will reject(2) after 2s.
+//The order is resolve(1), reject(2), resolve(3), reject(4)
+//When reject(2) happens, the Promise.all catch error and console.log error `Error:2`

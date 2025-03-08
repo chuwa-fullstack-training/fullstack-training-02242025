@@ -9,6 +9,8 @@ new Promise((resolve, reject) => {
   console.log('e');
   reject('f');
 }).then(result => console.log(result));
+// a, c, e, d, b
+// when both promise and setTimeout are put in a queue, promise gets executed first, f is rejected so it's ignored.
 
 // 2
 const fn = () =>
@@ -22,3 +24,7 @@ fn().then(res => {
 });
 
 console.log('start');
+// 1, start, success
+// console.log(1) inside promise is executed immediately, then 'success' is put into queue, then console.log('start'),
+// and finally 'success'
+

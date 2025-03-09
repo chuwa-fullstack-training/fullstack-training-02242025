@@ -12,4 +12,13 @@
  */
 const intersection = (nums1, nums2) => {
   // Your solution here
+  const nums1Set = new Set(nums1);
+  return nums2
+      .filter(num => nums1Set.has(num)) 
+      .reduce((n, num) => {
+          if (!n.includes(num)) {
+              n.push(num);
+          }
+          return n;
+      }, []);
 };

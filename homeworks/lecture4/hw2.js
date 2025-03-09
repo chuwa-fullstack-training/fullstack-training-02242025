@@ -1,11 +1,12 @@
-// ONLY use map, filter, reduce to solve the following problems:
+// ONLY use map, filter, reduce to solve the following problems:\
 
 // 1. Given an array of numbers, return an array of numbers that are doubled.
+const double = (arr) => arr.map(num => num * 2);
 
 // 2. Given an array of numbers, return an array of numbers that are even.
-
+const even = (arr) => arr.filter(num => num % 2 === 0);
 // 3. Reverse the string: "Hello World" -> "dlroW olleH"
-
+const reverse = (str) => str.split('').reduce((rev, char) => char + rev, '');
 /**
  * 4. Flatten the array of arrays to a single array:
  * Example 1:

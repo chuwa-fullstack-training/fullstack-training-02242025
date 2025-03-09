@@ -1,6 +1,6 @@
 /** implement Singleton pattern in both ES5 and ES6
  * https://en.wikipedia.org/wiki/Singleton_pattern
- * 
+ *
  * Example:
  * const instance1 = new Singleton();
  * const instance2 = new Singleton();
@@ -8,3 +8,31 @@
  */
 
 // your code here
+
+// ES5
+var Singleton = (function () {
+  var instance;
+
+  function Singleton() {
+    if (instance) {
+      return instance;
+    }
+    instance = this;
+
+    this.timestamp = new Date();
+  }
+  return Singleton;
+})();
+
+//ES6
+class Singleton {
+  constructor() {
+    if (Singleton.instance) {
+      return Singleton.instance;
+    }
+
+    Singleton.instance = this;
+
+    this.timestamp = new Date();
+  }
+}

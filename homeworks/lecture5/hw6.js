@@ -9,9 +9,14 @@ function sequencePromise(urls) {
   function fetchOne(url) {
     // for `getJSON` function you can choose either from the implementation of hw5 or `fetch` version provided by browser
     // if you use `fetch`, you have to use browser console to test this homework
-    return getJSON(url).then(response => results.push(response));
+    return getJSON(url).then((response) => results.push(response));
   }
   // implement your code here
+  return urls
+    .reduce((prevPromise, url) => {
+      return prevPromise.then(() => fetchOne(url));
+    }, Promise.resolve())
+    .then(() => results);
 
   return results;
 }
@@ -19,6 +24,11 @@ function sequencePromise(urls) {
 // option 1
 function getJSON(url) {
   // this is from hw5
+  return fetch(url, {
+    header: {
+      "User-Agent": "request",
+    },
+  }).then((res) => res.json());
 }
 
 // option 2
@@ -28,7 +38,13 @@ function getJSON(url) {
 
 // test your code
 const urls = [
-  'https://api.github.com/search/repositories?q=javascript',
-  'https://api.github.com/search/repositories?q=react',
-  'https://api.github.com/search/repositories?q=nodejs'
+  "https://api.github.com/search/repositories?q=javascript",
+  "https://api.github.com/search/repositories?q=react",
+  "https://api.github.com/search/repositories?q=nodejs",
 ];
+
+sequencePromise(urls)
+  .then((results) => {
+    console.log(results[0].items.length);
+  })
+  .catch((err) => console.log(err));

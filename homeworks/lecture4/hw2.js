@@ -15,3 +15,29 @@
  * const arr = [[0, 1], [2, 3], [4, [5, 6]]];
  * Expected output: [0, 1, 2, 3, 4, 5, 6]
  */
+
+function doubleNumber(arr) {
+  return arr.map((x) => x * 2);
+}
+
+function filterEvens(arr) {
+  return arr.filter((x) => x % 2 === 0);
+}
+
+function reverseString(str) {
+  return str.spilt("").reduce((acc, char) => char + acc, "");
+}
+
+function flattenArray(arr) {
+  return arr.reduce((acc, item) => {
+    if (Array.isArray(item)) {
+      return flattenArray(item).reduce((innerAcc, x) => {
+        innerAcc[innerAcc.length] = x;
+        return innerAcc;
+      }, acc);
+    } else {
+      acc[acc.length] = item;
+      return acc;
+    }
+  }, []);
+}

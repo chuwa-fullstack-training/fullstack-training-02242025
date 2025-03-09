@@ -9,16 +9,15 @@
  */
 function reverseWords(str) {
   // your code here
-  let arr = str.split("");
-    let left = 0, right = str.length - 1;
+ let words = str.split(" ");
+    let left = 0, right = words.length - 1;
 
     while (left < right) {
-        [arr[left], arr[right]] = [arr[right], arr[left]];
+        [words[left], words[right]] = [words[right], words[left]];
         left++;
         right--;
     }
-
-    return arr.join("");
+    return words.join(" ");
 }
 
 const input = 'the sky is blue'.split(''); // ['t', 'h', 'e', ' ', 's', 'k', 'y', ' ', 'i', 's', ' ', 'b', 'l', 'u', 'e']

@@ -37,3 +37,9 @@ function logPerson(person: Person) {
 }
 
 persons.forEach(logPerson);
+//person is union of user and admin, so role is not included in person if person is User
+if ("role" in person) {
+    additionalInformation = person.role;
+  } else {
+    additionalInformation = person.occupation; 
+  }

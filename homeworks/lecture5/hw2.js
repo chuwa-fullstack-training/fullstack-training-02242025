@@ -1,15 +1,23 @@
-/**
- * reverse words in a string
- *
- * input: "the sky is blue"
- * output: "blue is sky the"
- *
- * extra: in-place
- * @param {string[]} str
- */
 function reverseWords(str) {
-  // your code here
+  function reverse(start, end) {
+    while (start < end) {
+      [str[start], str[end]] = [str[end], str[start]];
+      start++;
+      end--;
+    }
+  }
+
+  reverse(0, str.length - 1);
+
+  let start = 0;
+  for (let end = 0; end <= str.length; end++) {
+    if (end === str.length || str[end] === " ") {
+      reverse(start, end - 1);
+      start = end + 1;
+    }
+  }
 }
 
-const input = 'the sky is blue'.split(''); // ['t', 'h', 'e', ' ', 's', 'k', 'y', ' ', 'i', 's', ' ', 'b', 'l', 'u', 'e']
+const input = "the sky is blue".split("");
 reverseWords(input);
+console.log(input.join(""));

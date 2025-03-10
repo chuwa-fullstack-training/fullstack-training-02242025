@@ -1,6 +1,6 @@
 // change http request into promise-based function
 
-const https = require('https');
+const https = require("https");
 
 // function httpsRequest(url) {
 //   const options = {
@@ -38,37 +38,43 @@ const https = require('https');
 // }
 
 function getJSON(url) {
-  // implement your code here
-  return new Promise((resolve, reject) =>{
+  return new Promise((resolve, reject) => {
     const options = {
-          headers: {
-            'User-Agent': 'request'
-          }
-        };
-    https.get(url, options, response =>{
-      if(response.statusCode != 200){
-        reject(new Error (`Request failed: ${response.statusCode}`));
-        return;
-      }
-      let data = '';
-      response.on('data', chunk => {
-        data += chunk;
-      })
+      headers: {
+        "User-Agent": "request",
+      },
+    };
 
-      response.on('end', () => {
-        try{
-          const jsonData = JSON.parse(data);
-          resolve(jsonData);
-        }catch(err){
-          reject(new Error(`Failed to parse JSON: ${err.message}`));
+    https
+      .get(url, options, (response) => {
+        if (response.statusCode !== 200) {
+          reject(
+            new Error(`Request failed with status code: ${response.statusCode}`)
+          );
+          response.resume();
+          return;
         }
+
+        let data = "";
+        response.on("data", (chunk) => {
+          data += chunk;
+        });
+
+        response.on("end", () => {
+          try {
+            const jsonData = JSON.parse(data);
+            resolve(jsonData);
+          } catch (e) {
+            reject(new Error(`Failed to parse JSON: ${e.message}`));
+          }
+        });
+      })
+      .on("error", (err) => {
+        reject(new Error(`Request error: ${err.message}`));
       });
-    }).on('error', err => {
-      reject(new Error(`Request error: ${error.message}`));
-    })
   });
 }
 
-getJSON('https://api.github.com/search/repositories?q=javascript')
-  .then(response => console.log(response.items.length)) // output: 30
-  .catch(err => console.log(err)); // if you remove options from https.get parameters, you might see an error
+getJSON("https://api.github.com/search/repositories?q=javascript")
+  .then((response) => console.log(response.items.length)) // output: 30
+  .catch((err) => console.log(err)); // if you remove options from https.get parameters, you might see an error

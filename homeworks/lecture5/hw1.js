@@ -4,18 +4,17 @@
 for (var i = 0; i < 5; i++) {
   setTimeout(() => console.log(i), 1000);
 }
-
-// 4, 4, 4, 4, 4
-// because setTimeout push console.log(i) to the callback queue and they only execute when the main script is finished
-// by which time i is set to 5 because is is declared with var
+// Output: 5, 5, 5, 5, 5
+// Explanation: var is function-scoped, so there's only one i variable shared across all iterations.
+// When the setTimeout callbacks execute after 1 second, the loop has already completed and i is 5.
 
 // 2
 for (let i = 0; i < 5; i++) {
   setTimeout(() => console.log(i), 1000);
 }
-// 0, 1, 2, 3, 4
-// because setTimeout push console.log(i) to the callback queue and they only execute when the main script is finished
-// but because i is declared with let which is block scoped, each iteration gets a new i instance
+// Output: 0, 1, 2, 3, 4
+// Explanation: let is block-scoped, so each iteration gets its own i variable.
+// The setTimeout callbacks capture the i value at each iteration.
 
 // 3
 for (var i = 0; i < 5; i++) {
@@ -23,25 +22,28 @@ for (var i = 0; i < 5; i++) {
     setTimeout(() => console.log(i), 1000);
   })(i);
 }
-// 0, 1, 2, 3, 4
-// although i is declared with var, the inner iife functions creates a new scope for each iteration. so the result is the same as when i is declared with let
-
+// Output: 0, 1, 2, 3, 4
+// Explanation: The IIFE (Immediately Invoked Function Expression) creates a new scope for each iteration,
+// capturing the current value of i, similar to how let works.
 
 // 4
 let fn = () => {
-  console.log('I am fn');
-}
+  console.log("I am fn");
+};
 setTimeout(fn, 1000);
 fn = () => {
-  console.log('I am another fn');
-}
-//I am another fn.
-//setTimeout schedules the function by reference, so it will executes the new fn
+  console.log("I am another fn");
+};
+// Output: I am another fn
+// Explanation: setTimeout schedules the function by reference. When the function executes after 1 second,
+// it uses the current definition of fn, which has been reassigned.
 
 // 5
 let obj = {
-  name: 'obj',
-}
+  name: "obj",
+};
 setTimeout(() => console.log(obj), 1000);
-obj.name = 'another obj';
-//{"name": another obj}
+obj.name = "another obj";
+// Output: {name: 'another obj'}
+// Explanation: The setTimeout callback references the obj object. When it executes after 1 second,
+// it logs the current state of the object, which has been modified.

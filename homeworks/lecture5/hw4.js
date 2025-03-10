@@ -14,9 +14,11 @@ Promise.resolve(1)
   });
 
 // 1, 2
-// the promise resolves, which calls the first then, and calls the second then
+// Promise.resolve(1) creates a promise that is immediately resolved with the value 1
+// The first .then() method is called with the resolved value (1), Returns 2 (which becomes the resolved value for the next promise)
+// The second .then() handler is called with the value 2 from the previous .then(): It logs 2 to the console
 
-// // 2
+// 2
 Promise.reject(1)
   .then(res => {
     console.log(res);
@@ -29,8 +31,12 @@ Promise.reject(1)
   .then(res => {
     console.log(res);
   });
-//1 3
-//the promise rejects, which calls the catch function and calls the second then
+// 1, 3
+// Promise.reject(1) creates a promise that is immediately rejected with the value 1
+// The .then() method is skipped because the promise is rejected
+// The .catch() method is called with the rejected value (1)
+// The promise returned by .catch() is then resolved with the value 3
+// The second .then() method is called with the resolved value (3)
 
 
 //3
@@ -51,6 +57,12 @@ function runReject(x) {
 Promise.all([runAsync(1), runReject(4), runAsync(3), runReject(2)])
   .then(res => console.log(res))
   .catch(err => console.log(err));
-//error: 2
-//it rejects on the first encounter of rejection
+// Error: 2
+/**
+ * Promise.all() fails fast on the first rejection
+ * The other promises continue executing in the background, but their results are ignored
+ * The timeout durations determine which rejection occurs first
+ * The .then() handler is skipped because of the rejection
+ * The .catch() handler receives the first rejection error (Error: 2) and logs it
+ */
 

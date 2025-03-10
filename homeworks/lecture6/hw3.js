@@ -8,13 +8,17 @@
  * const debouncedFn = debounce(printHello, 1000)
  * debouncedFn()
  * debouncedFn() // timer reset to 1s
- * 
+ *
  * @param {function} func
  * @param {number} delay
  * @returns {function}
  */
 function debounce(func, delay) {
-  // your code here
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => func.apply(this, args), delay);
+  };
 }
 
 /**
@@ -27,11 +31,34 @@ function debounce(func, delay) {
  * const throttledFn = throttle(printHello, 1000)
  * throttledFn()
  * throttledFn() // ignored
- * 
+ *
  * @param {function} func
  * @param {number} delay
  * @returns {function}
  */
 function throttle(func, delay) {
-  // your code here
+  let lastCall = 0;
+  return function (...args) {
+    const now = Date.now();
+    if (now - lastCall >= delay) {
+      lastCall = now;
+      func.apply(this, args);
+    }
+  };
 }
+
+// Debounce Test
+const printHelloDebounce = () => console.log("hello from debounce");
+const debouncedFn = debounce(printHelloDebounce, 1000);
+
+debouncedFn();
+debouncedFn();
+setTimeout(debouncedFn, 1200);
+
+// Throttle Test
+const printHelloThrottle = () => console.log("hello from throttle");
+const throttledFn = throttle(printHelloThrottle, 1000);
+
+throttledFn();
+throttledFn();
+setTimeout(throttledFn, 1200);

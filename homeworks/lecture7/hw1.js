@@ -14,3 +14,28 @@
  */
 
 // your code here
+// node hw1.js /home/hongji/Documents/fullstack-training-02242025/homeworks/lecture7 txt
+
+
+const fs = require('fs');
+const path = require('path');
+
+const dir = process.argv[2];
+const ext = '.' + process.argv[3]; 
+console.log("Arguments received:", process.argv);
+
+
+if (!dir || !ext) {
+    console.error('Not enough arguments given');
+    process.exit(1);
+}
+
+fs.readdir(dir, (err, files) => {
+    if (err) {
+        console.error('Error reading directory:', err.message);
+        process.exit(1);
+    }
+
+    files.filter(file => path.extname(file) === ext)
+         .forEach(file => console.log(file));
+});

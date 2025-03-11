@@ -13,3 +13,4 @@ function restFn(x, y, ...rest) {
 }
 
 console.log(restFn(1, 2, 3, 4, 5)); // ??
+// Spread (...numbers) expands the array, while ...rest collects remaining elements into an array.

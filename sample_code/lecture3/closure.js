@@ -1,3 +1,4 @@
+//Closures help create private variables that cannot be accessed from outside a function.
 function createCalculator() {
   var result = 0;
 

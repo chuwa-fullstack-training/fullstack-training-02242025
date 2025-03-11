@@ -1,4 +1,6 @@
 // Map
+//don't forget return ley word inside the callback function
+
 const numbers = [1, 2, 3, 4, 5];
 const doubledNumbers = numbers.map(function (value, index, array) {
   return num * 2;

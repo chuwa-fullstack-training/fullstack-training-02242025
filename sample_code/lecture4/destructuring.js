@@ -26,7 +26,9 @@ console.log(yearsOld); // Output: 30
 console.log(hometown); // Output: New York
 
 // Destructuring an object with a default value
+//If zip is not present or is undefined, postalCode will take the default value '95054'.
 const { zip: postalCode = '95054' } = person;
+//const {zip = "9401"} = person;
 
 console.log(postalCode); // Output: 95054
 

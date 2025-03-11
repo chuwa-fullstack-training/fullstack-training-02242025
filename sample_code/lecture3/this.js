@@ -19,3 +19,8 @@ callName.call(obj); // obj
 
 const arr = [callName, sayHi];
 arr[0](); // undefined // arr.0.call(arr)
+
+//make flatten into built in array method using this,don't forget the this key word 
+Array.prototype.flatten = function() {
+  return this.reduce((acc, val) => acc.concat(Array.isArray(val) ? val.flatten() : val), []);
+};

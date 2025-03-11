@@ -12,6 +12,7 @@ let list: number[] = [1, 2, 3];
 let list2: Array<number> = [1, 2, 3];
 
 // type: tuple
+//确定长度的类型
 let x: [string, number] = ['hello', 10];
 
 // type: enum
@@ -26,6 +27,7 @@ enum Direction {
   Right
 }
 let up: Direction = Direction.Up;
+//TypeScript automatically assigns values to the enum members starting from 0
 
 // type: any
 let notSure: any = 4;

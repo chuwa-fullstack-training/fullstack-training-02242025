@@ -50,6 +50,7 @@ function f() {
 //7
 //var defined in function scope make a function scope vairable and not overwrite the global
 //var inside a function are local to that function
+//var a = 5 is global scope
 
 // 6.
 var a = 1;

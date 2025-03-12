@@ -5,5 +5,16 @@
  * @param {number} num
  */
 function format(num) {
-  // your code here
+  const [integer, decimal] = num.toString().split(".");
+  let rsl = []
+  const integerArray = integer.split("");
+  integerArray.reverse().reduce((acc, ele, index) => {
+    if (index > 0 && index % 3 === 0) {
+      acc.push(',');
+    }
+    acc.push(ele)
+    return acc
+  }, rsl)
+  return rsl.reverse().join("") + (decimal ? "." + decimal : "");
 }
+console.log(format(12345678))

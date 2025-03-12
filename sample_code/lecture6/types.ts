@@ -73,6 +73,7 @@ function controlFlowAnalysisWithNever(foo: Foo) {
     // number
   } else {
     // never
+    //if foo type is overwritten, it will show error
     const check: never = foo;
   }
 }

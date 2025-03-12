@@ -8,6 +8,8 @@ interface Employee {
   salary: number;
 }
 
+//function不同版本
+
 function getDetails(person: PersonOverload): string;
 function getDetails(employee: Employee): string;
 function getDetails(personOrEmployee: PersonOverload | Employee): string {
@@ -37,5 +39,3 @@ function len(x: any): number {
 len('hello');
 len([0, 1, 2]);
 len(Math.random() > 0.5 ? 'hello' : [0, 1, 2]);
-
-

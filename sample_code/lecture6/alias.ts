@@ -1,5 +1,5 @@
 type User = {
-  name: string;
+  name: string; //name是属性
   age: number;
 };
 

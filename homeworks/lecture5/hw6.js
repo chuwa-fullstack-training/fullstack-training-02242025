@@ -6,6 +6,7 @@
  */
 const { getJSON } = require('./hw5.js');
 
+//one way:
 // function sequencePromise(urls) {
 //   const results = [];
 //   function fetchOne(url) {

@@ -1,7 +1,7 @@
 // Function type expressions
 type Operator = (a: number, b: number) => number;
 
-function operate(a: number, b: number, op: Operator) {
+function operate(a: number, b: number, op: Operator): string {
   return op(a, b);
 }
 
@@ -13,6 +13,7 @@ interface Person {
   sayHello: () => void;
 }
 
+//实现
 class PersonImpl implements Person {
   name: string;
 
@@ -35,15 +36,16 @@ let person = createPerson(PersonImpl, 'Aaron');
 person.sayHello();
 
 // Generic functions
-function firstElement(arr: any[]): any {
-  return arr[0];
-}
-
-// function firstElement<Type>(arr: Type[]): Type | undefined {
+// function firstElement(arr: any[]): any {
 //   return arr[0];
 // }
 
-let s = firstElement(['a', 'b', 'c']);
+function firstElement<Type>(arr: Type[]): Type | undefined {
+  return arr[0];
+}
+
+let s = firstElement(['a', 'b' , 'c']); //implicitly to infer the type is string
+// let s = firstElement<string>(['a', 'b', 'c']); explicit
 console.log(s);
 
 // Generic inference

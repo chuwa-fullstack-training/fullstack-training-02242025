@@ -8,4 +8,5 @@ export const printPoint = ([x, y]) => {
 
 const test = 'test';
 
-export default test;
+export default test;//一个modulo只有一个default
+

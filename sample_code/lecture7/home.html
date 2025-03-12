@@ -7,10 +7,15 @@
 </head>
 <body>
     <h1>Welcome to Nodejs tutorial</h1>
+
     <form action="/create-post" method="post">
-        <input type="text" name="title">
-        <input type="text" name="content">
+        <input type="text" name="title" placeholder="Enter title">
+        <input type="text" name="content" placeholder="Enter content">
         <input type="submit" value="submit">
     </form>
+
+    <h2>Submitted Data:</h2>
+    <p><strong>Title:</strong> {{title}}</p>
+    <p><strong>Content:</strong> {{content}}</p>
 </body>
 </html>

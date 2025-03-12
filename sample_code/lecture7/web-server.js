@@ -1,39 +1,54 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const url = require('url');  // To parse query strings
 
 const server = http.createServer((req, res) => {
-  const { url, method } = req;
+  const { method, url: requestUrl } = req;
+
   if (method === 'GET') {
-    if (url === '/') {
-      res.end('this is the home page');
-    } else if (url === '/about') {
-      res.end('this is the about page');
-    } else if (url.startsWith('/home.html')) {
+    if (requestUrl === '/') {
+      res.end('This is the home page');
+    } else if (requestUrl.startsWith('/home.html')) {
+
+      const queryParams = url.parse(requestUrl, true).query;
+
       fs.readFile(path.join(__dirname, 'home.html'), (err, html) => {
         if (err) {
-          res.end('error');
+          res.end('Error reading home.html');
         } else {
           res.writeHead(200, { 'Content-Type': 'text/html' });
+
+          html = html.toString()
+                     .replace('{{title}}', queryParams.title || '')
+                     .replace('{{content}}', queryParams.content || '');
+                     
           res.write(html);
           res.end();
         }
       });
     } else {
-      res.end('this is the 404 page');
+      res.end('404 - Page not found');
     }
   } else if (method === 'POST') {
-    if (url === '/create-post') {
+    if (requestUrl === '/create-post') {
       let body = [];
       req.on('data', chunk => {
         body.push(chunk);
       });
+
       req.on('end', () => {
         const parsedBody = Buffer.concat(body).toString();
-        res.end(parsedBody);
+        const queryParams = new URLSearchParams(parsedBody);
+        const title = queryParams.get('title');
+        const content = queryParams.get('content');
+
+        res.statusCode = 302;
+        res.setHeader('Location', `/home.html?title=${encodeURIComponent(title)}&content=${encodeURIComponent(content)}`);
+        res.end();
       });
     } else {
-      res.end('this is the 404 page');
+      res.end('404 - Page not found');
     }
   } else {
     res.end('Unsupported method');

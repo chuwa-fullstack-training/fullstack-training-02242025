@@ -19,3 +19,55 @@
  */
 
 // your code here
+const http = require('http');
+const url = require('url');
+const querystring = require('querystring');
+
+const server = http.createServer((req, res) => {
+  const parsedUrl = url.parse(req.url, true);  
+  const path = parsedUrl.pathname;  
+  const query = parsedUrl.query;    
+  
+  res.writeHead(200, { 'Content-Type': 'application/json' }); 
+
+  if (path === '/api/parsetime') {
+
+    if (query.iso) {
+      const isoDate = new Date(query.iso);
+      
+      if (isoDate.toString() === 'Invalid Date') {
+        res.end(JSON.stringify({ error: "Invalid ISO date" }));
+      } else {
+        const time = {
+          hour: isoDate.getHours(),
+          minute: isoDate.getMinutes(),
+          second: isoDate.getSeconds()
+        };
+        res.end(JSON.stringify(time));
+      }
+    } else {
+      res.end(JSON.stringify({ error: "ISO date parameter is required" }));
+    }
+  } else if (path === '/api/unixtime') {
+    if (query.iso) {
+      const isoDate = new Date(query.iso);
+      
+      if (isoDate.toString() === 'Invalid Date') {
+        res.end(JSON.stringify({ error: "Invalid ISO date" }));
+      } else {
+        const unixTime = {
+          unixtime: isoDate.getTime()
+        };
+        res.end(JSON.stringify(unixTime));
+      }
+    } else {
+      res.end(JSON.stringify({ error: "ISO date parameter is required" }));
+    }
+  } else {
+    res.end(JSON.stringify({ error: "Route not found" }));
+  }
+});
+
+server.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+});

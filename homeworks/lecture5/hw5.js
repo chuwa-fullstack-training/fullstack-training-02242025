@@ -1,6 +1,8 @@
-// change http request into promise-based function
+// change http request into promise-based function ///  node.js need
 
 const https = require('https');
+const { options } = require('joi');
+const { resolve } = require('path');
 
 // function httpsRequest(url) {
 //   const options = {
@@ -37,8 +39,45 @@ const https = require('https');
 //   });
 // }
 
+const https = require('https');
+const { options } = require('joi');
+const { resolve } = require('path');
 function getJSON(url) {
-  // implement your code here
+  return new Promise((resolve, reject) => {
+    const options = {
+      headers: {
+        'User-Agent': 'request' // Required for GitHub API
+      }
+    };
+
+    https.get(url, options, response => {
+      let data = '';
+
+      // Check if response status is not 200
+      if (response.statusCode !== 200) {
+        reject(new Error(`Request failed. Status code: ${response.statusCode}`));
+        response.resume(); // Discard response
+        return;
+      }
+
+      // Accumulate data
+      response.on('data', chunk => {
+        data += chunk;
+      });
+
+      // When response ends, parse JSON and resolve promise
+      response.on('end', () => {
+        try {
+          const jsonData = JSON.parse(data);
+          resolve(jsonData);
+        } catch (error) {
+          reject(new Error(`Error parsing JSON: ${error.message}`));
+        }
+      });
+    }).on('error', err => {
+      reject(new Error(`Request error: ${err.message}`));
+    });
+  });
 }
 
 getJSON('https://api.github.com/search/repositories?q=javascript')

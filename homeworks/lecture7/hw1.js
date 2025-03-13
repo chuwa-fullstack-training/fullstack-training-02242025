@@ -14,3 +14,29 @@
  */
 
 // your code here
+
+function listFiles(dir, ext) {
+    fs.readdir(dir, (err, files) => {
+      if (err) {
+        return console.error(`Error reading directory: ${err.message}`);
+      }
+
+      files.forEach(file => {
+        if (path.extname(file) === `.${ext}`) {
+          console.log(file);
+        }
+      });
+    });
+  }
+
+
+const dir = process.argv[2]; // dict path
+const ext = process.argv[3];
+
+if (!dir || !ext) {
+  console.error('Usage: node script.js <directory> <extension>');
+  process.exit(1);
+}
+
+
+listFiles(dir, ext);

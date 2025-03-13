@@ -1,4 +1,4 @@
-interface User {
+interface Users {
   name: string;
   age: number;
   occupation: string;
@@ -10,7 +10,7 @@ interface Admin {
   role: string;
 }
 
-type Person = User | Admin;
+type Person = Users | Admin;
 
 const persons: Person[] = [
   {
@@ -25,10 +25,16 @@ const persons: Person[] = [
   },
 ];
 
+//check person as Users pr Admin
+function isAdmin(person: Person): person is Admin {
+  return "role" in person;
+}
+
+
 // fix the error showing in the following code:
 function logPerson(person: Person) {
   let additionalInformation: string;
-  if (person.role) {
+  if (isAdmin(person)) {
     additionalInformation = person.role;
   } else {
     additionalInformation = person.occupation;

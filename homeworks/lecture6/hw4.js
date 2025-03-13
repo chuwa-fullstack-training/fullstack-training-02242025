@@ -6,15 +6,14 @@
  */
 function format(num) {
   const [integer, decimal] = num.toString().split(".");
-  let rsl = []
+  let rsl = ""
   const integerArray = integer.split("");
-  integerArray.reverse().reduce((acc, ele, index) => {
+  integerArray.reduce((acc, ele, index) => {
     if (index > 0 && index % 3 === 0) {
-      acc.push(',');
+      acc = "," + acc
     }
-    acc.push(ele)
-    return acc
+    return String(value) + acc
   }, rsl)
-  return rsl.reverse().join("") + (decimal ? "." + decimal : "");
+  return rsl + (decimal ? "." + decimal : "");
 }
 console.log(format(12345678))

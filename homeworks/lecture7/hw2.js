@@ -18,4 +18,42 @@
  * 2. response.writeHead(200, { contentType: 'application/json' })
  */
 
-// your code here
+const http = require('http')
+const PORT = 3000;
+
+
+const server = http.createServer((req, res) => {
+    const myUrl = new URL(req.url, `http://${req.headers.host}`);
+    const pathname = myUrl.pathname;
+    const iso = myUrl.searchParams.get('iso'); //2023-05-22T12:34:56.789Z
+    if (req.method === 'GET') {
+        if (!iso) {
+            res.writeHead(400, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ error: 'Missing iso query parameter' }));
+        }
+        const date = new Date(iso);
+        if (pathname === '/api/parsetime') {
+            const response = {
+                hour: date.getUTCHours(),
+                minute: date.getUTCMinutes(),
+                second: date.getUTCSeconds(),
+            };
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify(response));
+        }
+        if(pathname  === '/api/unixtime') {
+            const response = {
+                unixtime: date.getTime()
+            };
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify(response))
+        }
+        res.writeHead(405, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Method Not Allowed' }));
+    }
+
+});
+
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

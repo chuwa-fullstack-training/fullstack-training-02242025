@@ -1,8 +1,12 @@
 const http = require('http');
 const PORT = 3000;
 
+//res.on() in the Server (http.createServer) → Handling Outgoing Data
+//req in the Server (http.createServer) – Handling Incoming Data
+
 const server = http.createServer((req, res) => {
   res.end(JSON.stringify({ message: 'Hello World' }));
+  //end method allows you to add to the body and send the response inmmediatly
 });
 
 server.listen(PORT, () => {

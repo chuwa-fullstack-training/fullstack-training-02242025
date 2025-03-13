@@ -14,8 +14,8 @@ const server = http.createServer((req, res) => {
         if (err) {
           res.end('error');
         } else {
-          res.writeHead(200, { 'Content-Type': 'text/html' });
-          res.write(html);
+          res.writeHead(200, { 'Content-Type': 'text/html' });//what type of data we send
+          res.write(html); //send partial data
           res.end();
         }
       });

@@ -42,3 +42,48 @@
  *  }
  * }
  */
+const express = require('express');
+const axios = require('axios');
+
+const app = express();
+const port = 3000;
+
+app.get('/hw2', async (req, res) => {
+  const { query1, query2 } = req.query;
+
+  if (!query1 || !query2) {
+    return res.status(400).json({ error: 'Both query1 and query2 are required' });
+  }
+
+  try {
+    // Fetch data for query1
+    const response1 = await axios.get(`https://hn.algolia.com/api/v1/search`, {
+      params: { query: query1, tags: 'story' }
+    });
+
+    // Fetch data for query2
+    const response2 = await axios.get(`https://hn.algolia.com/api/v1/search`, {
+      params: { query: query2, tags: 'story' }
+    });
+
+    // Constructing the final result
+    const result = {
+      [query1]: response1.data.hits[0] ? {
+        created_at: response1.data.hits[0].created_at,
+        title: response1.data.hits[0].title
+      } : null,
+      [query2]: response2.data.hits[0] ? {
+        created_at: response2.data.hits[0].created_at,
+        title: response2.data.hits[0].title
+      } : null
+    };
+
+    return res.json(result);
+  } catch (error) {
+    return res.status(500).json({ error: 'An error occurred while fetching data' });
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});

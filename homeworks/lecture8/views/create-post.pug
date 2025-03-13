@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title Create a Post
+  body
+    h1 Create a Post
+    // If title or content is provided, show the values below the form
+    if title && content
+      h3 Submitted Data:
+      p Title: #{title}
+      p Content: #{content}
+    
+    form(action="/create-post" method="POST")
+      label(for="title") Title:
+      input(type="text" id="title" name="title" value="#{title}" required)
+      br
+      label(for="content") Content:
+      textarea(id="content" name="content" required) #{content}
+      br
+      button(type="submit") Submit
+    br
+    a(href="/") Back to Homepage

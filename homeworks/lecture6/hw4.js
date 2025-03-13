@@ -6,4 +6,6 @@
  */
 function format(num) {
   // your code here
+  const formatter = new Intl.NumberFormat('en-US');
+  return formatter.format(num);
 }

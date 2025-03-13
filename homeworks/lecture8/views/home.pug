@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title Home
+  body
+    h1 User Information
+    form(method="POST" action="/home.html")
+      label(for="name") Name:
+      input(type="text" name="name" value=name || "")
+      br
+      label(for="age") Age:
+      input(type="number" name="age" value=age || "")
+      br
+      button(type="submit") Submit
+    if name && age
+      h2 Submitted Data:
+      p Name: #{name}
+      p Age: #{age}

@@ -19,11 +19,25 @@
  */
 function numIdenticalPairs(nums) {
   // implement here
+  let freq = {};
+  let count = 0;
+  for (let i of nums){
+    if (freq[i]){
+      count += freq[i];
+      freq[i] ++;
+    } else {
+      freq[i] = 1;
+    }
+    
+  }
+  return count;
 }
-
+console.log(numIdenticalPairs([1, 2, 3, 1, 1, 3]));
 /**
  * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
  */
 function removeVowels(s) {
   // implement here
+  return s.replace(/[aeiou]/gi, '');
 }
+console.log(removeVowels("hello world"));

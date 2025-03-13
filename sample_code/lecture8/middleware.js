@@ -32,6 +32,10 @@ app.get('/users', userController.getAllUsers);
 app.get('/users/:id', userController.getUserById);
 
 app.post('/users', checkAdmin, userController.createUser);
+//add a checkAdmin middleware to add authorization
+// POST request is sent to /users, Express will first invoke checkAdmin,
+// and only if checkAdmin calls next(), it will proceed to userController.createUser.
+
 
 // how to pass variable between middleware functions
 // option 1: use res.locals

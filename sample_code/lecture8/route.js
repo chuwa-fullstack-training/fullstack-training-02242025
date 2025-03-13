@@ -9,14 +9,15 @@ const postRouter = require('./routers/post');
 app.use('/api', userRouter);
 app.use('/api', postRouter);
 
-// app.use(express.static('public'));
+//static放在前面 如果有和get一个url的request，只运行static里面的html
+app.use(express.static('public'));
 
-// app.get('/home/:name', (req, res, next) => {
-//   console.log('query', req.query);
-//   console.log('params', req.params);
-//   res.send(`this is ${req.params.name} page`);
-//   //   next();
-// });
+app.get('/home/:name', (req, res, next) => {
+  console.log('query', req.query);
+  console.log('params', req.params);
+  //res.send(`this is ${req.params.name} page`);
+  next(); //如果没有termination（eg: res。send）请求不会结束，如果有next会跳到下个符合route的middle function
+});
 
 // // app.get('/home', (req, res, next) => {
 // //   console.log('this is the second middleware');

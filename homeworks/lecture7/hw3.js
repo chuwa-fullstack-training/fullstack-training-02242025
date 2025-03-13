@@ -22,7 +22,7 @@ const server = http.createServer((req, res) => {
     const pathname = myUrl.pathname;
 
     if (req.method === 'GET') {
-        if (pathname === '/home.html') {
+        if (pathname.startsWith('/home.html')) {
             // Read and serve home.html with query parameters
             fs.readFile(path.join(__dirname, 'home.html'), 'utf8', (err, data) => {
                 if (err) {
@@ -50,9 +50,8 @@ const server = http.createServer((req, res) => {
         req.on('data', chunk => {
             body += chunk.toString();
         });
-
         req.on('end', () => {
-            const parsedBody = querystring.parse(body);
+            const parsedBody = querystring.parse(body);//make string to object
             const name = parsedBody.name || '';
             const age = parsedBody.age || '';
 
@@ -60,8 +59,6 @@ const server = http.createServer((req, res) => {
             res.writeHead(302, { Location: `/home.html?name=${encodeURIComponent(name)}&age=${encodeURIComponent(age)}` });
             res.end();
         });
-
-        return;
     }
 
     res.writeHead(404, { 'Content-Type': 'text/plain' });

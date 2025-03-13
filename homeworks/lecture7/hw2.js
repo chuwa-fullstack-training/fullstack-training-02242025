@@ -14,7 +14,7 @@
  * }
  *
  * HINTS:
- * 1. Use url.parse() method to parse URL strings.
+ * 1. Use url.parse() method to parse URL strings. // parse a URL string into an object
  * 2. response.writeHead(200, { contentType: 'application/json' })
  */
 

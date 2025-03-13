@@ -22,6 +22,11 @@ const dir = process.argv[2];
 const ext = '.' + process.argv[3];
 console.log("Arguments received:", process.argv);
 
+if(!dir || ext) {
+    dir = __dirname
+    ext = 'js'
+}
+
 function printFiles(p = __dirname, extension) {
     fs.readdir(p, (err, data) => {
         if(err) {
@@ -37,5 +42,3 @@ function printFiles(p = __dirname, extension) {
         }
     })
 }
-
-

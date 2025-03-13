@@ -11,7 +11,7 @@ const fileName = path.join(__dirname, 'demo.txt');
 // It writes the data 'Hello World' to the file specified by fileName.
 // However, this operation is non-blocking, meaning it does not stop or "pause" the program execution
 // while it completes the task. It returns control to the next line of code immediately.
-//when file was wriiten then it will call the call back
+//when file was wriiten then it will call the callback（asynchronous）
 
 fs.writeFile(fileName, 'Hello World', err => {
   if (err) {

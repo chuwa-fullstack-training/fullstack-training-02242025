@@ -10,6 +10,10 @@ function makeCustomer<T extends User>(u: T): T {
     type: "customer",
   };
 }
+const user = { id: 1, type: "admin", name: "Alice" };
+const customer = makeCustomer(user);
+console.log(customer);
+
 //T extends User, meaning it might have additional properties (e.g., { id: 1, type: "admin", name: "Alice" }).
 //The returned object only contains id and type, removing extra properties from T.
 

@@ -1,6 +1,13 @@
 function counter() {
-    // implement here
-}
+    let total = 0;
+    return function(n) {
+      if (typeof n === 'number') {
+        total += n;
+      }
+      return total;
+    };
+  }
+  
 
 let count = counter();
 console.log(count(3));  // Output: 3

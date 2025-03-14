@@ -11,14 +11,25 @@ function sequencePromise(urls) {
     // if you use `fetch`, you have to use browser console to test this homework
     return getJSON(url).then(response => results.push(response));
   }
-  // implement your code here
+  let chain = Promise.resolve();
+  urls.forEach(url => {
+    chain = chain.then(() => 
+      getJSON(url).then(response => {
+        results.push(response);
+      })
+    );
+  });
 
-  return results;
+  return chain.then(() => results);
 }
 
 // option 1
 function getJSON(url) {
-  // this is from hw5
+  return fetch(url, { headers: { 'User-Agent': 'request' } })
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+      return res.json();
+    });
 }
 
 // option 2

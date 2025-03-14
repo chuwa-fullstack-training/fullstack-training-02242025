@@ -6,5 +6,22 @@
 // <html><head><title>My Title</title></head></html - true
 
 function checkValidHTML(html) {
-    // implement your solution here
+    const tagPattern = /<\s*(\/?)([a-zA-Z]+)[^>]*>/g;
+    const stack = [];
+    let match;
+    while ((match = tagPattern.exec(html)) !== null) {
+        const isClosing = match[1] === '/';
+        const tagName = match[2].toLowerCase();
+        if (!isClosing) {
+            stack.push(tagName);
+        } else {
+            if (stack.length === 0) {
+                return false;
+            }
+            const lastTag = stack.pop();
+        if (lastTag !== tagName) {
+            return false;
+        }
+    }
+  }
 }

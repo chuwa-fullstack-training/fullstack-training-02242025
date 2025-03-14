@@ -7,7 +7,7 @@ type User = {
 function makeCustomer<T extends User>(u: T): T {
   return {
     ...u,
-    type: "customer",
+    type: "customer", 
   };
 }
 const user = { id: 1, type: "admin", name: "Alice" };
@@ -27,7 +27,7 @@ function f(a: string | number, b: string | number): string | number {
     throw new Error("Both parameters must be of the same type");
   }
 
-  return typeof a === "string" ? `${a} : ${b}` : (a as number) + (b as number);;
+  return typeof a === "string" ? `${a} : ${b}` : (a as number) + (b as number);
 }
 console.log(f("hello", "world")); 
-console.log(f(10, 20));           
+console.log(f(10, 20));

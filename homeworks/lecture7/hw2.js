@@ -39,9 +39,9 @@ const server = http.createServer((req, res) => {
 
     if(pathname === '/api/parsetime'){
         result = {
-            hour: date.getUTCHours(),
-            minute: date.getUTCMinutes(),
-            second: date.getUTCSeconds()
+            hour: date.getHours(),
+            minute: date.getMinutes(),
+            second: date.getSeconds()
         };
     } else if (pathname === '/api/unixtime') {
         result = {

@@ -10,5 +10,7 @@ books/
 .idea/
 .env
 
+
 marp-diagrams/
 projects/
+node_modules/

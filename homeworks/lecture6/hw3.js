@@ -15,6 +15,11 @@
  */
 function debounce(func, delay) {
   // your code here
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => func.apply(this, args), delay);
+  };
 }
 
 /**
@@ -34,4 +39,25 @@ function debounce(func, delay) {
  */
 function throttle(func, delay) {
   // your code here
+  let lastCall = 0;
+  return function (...args) {
+    const now = Date.now();
+    if (now - lastCall >= delay) {
+      lastCall = now;
+      func.apply(this, args);
+    }
+  };
 }
+function printHello() {
+  console.log('hello');
+}
+const debouncedFn = debounce(printHello, 1000);
+debouncedFn();
+setTimeout(debouncedFn, 500); 
+setTimeout(debouncedFn, 1200); 
+
+
+const throttledFn = throttle(printHello, 1000); 
+throttledFn(); 
+throttledFn(); 
+setTimeout(throttledFn, 1100); 

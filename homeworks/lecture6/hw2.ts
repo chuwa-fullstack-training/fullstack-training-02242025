@@ -28,7 +28,7 @@ const persons: Person[] = [
 // fix the error showing in the following code:
 function logPerson(person: Person) {
   let additionalInformation: string;
-  if (person.role) {
+  if ("role" in person) { 
     additionalInformation = person.role;
   } else {
     additionalInformation = person.occupation;
@@ -36,4 +36,9 @@ function logPerson(person: Person) {
   console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
 }
 
+
 persons.forEach(logPerson);
+
+//person could be either a User or an Admin.
+// If person is a User, it does not have role, so person.role is invalid.
+// TypeScript doesn't automatically know whether person is a User or an Admin.

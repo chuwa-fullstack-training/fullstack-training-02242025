@@ -1,10 +1,16 @@
 /*
+* author yangru zhou
 * Copy the enumerable properties of p to o, and return o.
 * If o and p have a property by the same name, o's property is overwritten.
 * This function does not handle getters and setters or copy attributes.
 */
 function extend(o, p) {
     // implement your code here
+    
+    for (var prop in p) {
+        o[prop] = p[prop];
+    }
+    return o;
 }
 
 /*
@@ -13,6 +19,14 @@ function extend(o, p) {
 */
 function union(o, p) {
     // implement your code here
+    var res = {};
+    for (var prop in p) {
+        res[prop] = p[prop];
+    }
+    for (var prop in o) {
+        res[prop] = o[prop];
+    }
+    return res;
 }
 
 /*
@@ -21,6 +35,12 @@ function union(o, p) {
 */
 function restrict(o, p) {
     // implement your code here
+    for (var prop in o){
+        if (!(prop in p)){
+            delete o[prop];
+        }
+    }
+    return o;
 }
 
 /*
@@ -30,4 +50,11 @@ function restrict(o, p) {
 */
 function intersection(o, p) {
     // implement your code here
+    res = {};
+    for (var prop in o){
+        if (prop in p){
+            res[prop] = o[prop]
+        }
+    }
+    return res
 }

@@ -9,3 +9,25 @@
  *    You don't need to handle the case like http://localhost:3000/hw1/test/test/txt.
  * 3. hw2 should be able to handle requests with query strings like it did in lecture 7;
  */
+
+const express = require("express");
+const fs = require("fs");
+const path = require("path");
+
+const router = express.Router();
+
+router.get("/:dir/:ext", (req, res) => {
+  const dir = req.params.dir;
+  const ext = `.${req.params.ext}`;
+  const dirPath = path.join(__dirname, dir);
+
+  fs.readdir(dirPath, (err, files) => {
+    if (err) {
+      return res.status(400).json({ error: "Invalid directory" });
+    }
+    const filteredFiles = files.filter((file) => path.extname(file) === ext);
+    res.json(filteredFiles);
+  });
+});
+
+module.exports = router; // ✅ Ensure it's exporting the router, NOT an object!

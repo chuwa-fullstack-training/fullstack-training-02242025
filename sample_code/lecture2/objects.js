@@ -13,6 +13,11 @@ console.log("Dog's name:", myDog.name);
 console.log("Dog's age:", myDog.age);
 console.log("Dog's breed:", myDog.breed);
 
+//defensive coding
+
+dogname = myDog && myDog.name;
+dogname = myDog?.name;
+
 // Calling object method
 myDog.bark();
 
@@ -49,7 +54,7 @@ var myCat = Object.create(Object.prototype, {
 const NAME = 'name';
 
 // Accessing object properties
-console.log("Cat's name:", myCat[NAME]);
+console.log("Cat's name:", myCat[NAME]); 
 console.log("Cat's age:", myCat['age']);
 console.log("Cat's breed:", myCat['breed']);
 
@@ -70,7 +75,7 @@ for (let property in myDog) {
   }
 }
 
-// getter and setter
+// getter and setter, getter cannot get functions with parameters
 let student = {
   firstName: 'Aaron',
   lastName: 'Zhang',
@@ -101,6 +106,10 @@ Object.defineProperty(student, 'getFullName', {
   },
   writable: false
 });
+
+// serialize objects
+JSON.stringify(student);
+JSON.parse(student); // return back to object
 
 // Object.defineProperty(student, 'setFullName', {
 //   value: function () {

@@ -50,7 +50,17 @@ let undefinedValue;
 console.log(undefinedValue);  // Outputs: undefined
 console.log(typeof undefinedValue);  // Outputs: undefined
 
-// Symbol data type
+// Symbol data type (unique, immutable, used less often)
 let sym = Symbol();
 console.log(sym);  // Outputs: Symbol()
 console.log(typeof sym);  // Outputs: symbol
+
+/*
+UNDEFINED is when a variable is declared but not assigned any value,
+NULL is when one intentionally want assign it no value
+they are loosely equal (==) but not strictly equal (===)
+*/
+
+//coercion (implicit transform)
+console.log(1+'a') // Outputs: '1a'
+

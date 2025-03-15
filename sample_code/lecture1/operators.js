@@ -95,3 +95,9 @@ console.log('Logical NOT (q):', logicalNotQ); // Output: true
 let age = 20;
 let isAdult = age >= 18 ? 'Adult' : 'Not Adult';
 console.log('Is Adult:', isAdult); // Output: "Adult"
+
+/* Defensive coding: can protect from the case when
+user has no name key, it will not report error but undefined
+&& (and) will first check the first argument, if it's false, just skip*/
+
+let name = user && user.name;

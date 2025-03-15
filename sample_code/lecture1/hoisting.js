@@ -20,3 +20,9 @@ console.log(myConstVar); // ReferenceError: Cannot access 'myConstVar' before in
 const myConstVar = 'Hello, Const!';
 
 console.log(myConstVar); // Outputs: Hello, Const!
+
+/*
+var can be hoisted, but initial declare cannot be hoisted (output undefined, no error),
+let can be hoisted, but initial declare cannot be hoisted (output error),
+const behaves like let
+*/

@@ -13,6 +13,8 @@ if (num > 0) {
   console.log('Number is zero');
 }
 
+/* switch more faster*/
+
 switch (num) {
   case 0:
     console.log('Number is zero');
@@ -51,6 +53,8 @@ for (let m = 0; m < 5; m++) {
   }
   console.log('Iteration:', m);
 }
+
+// error handle
 
 function test(num) {
   if (num == 0) {

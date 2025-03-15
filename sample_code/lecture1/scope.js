@@ -32,3 +32,10 @@ console.log(global.globalVar);
 test = "I'm a global variable, test";
 console.log(global.test);
 // console.log(functionVar); // Error: functionVar is not defined
+
+
+/* var has bigger scope then let and const, functional-scope */
+
+/* Closure is inner function that retains access to variables from outer functions even after outer function
+is returned */
+

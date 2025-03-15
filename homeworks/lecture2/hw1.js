@@ -4,8 +4,14 @@
 * This function does not handle getters and setters or copy attributes.
 */
 function extend(o, p) {
-    // implement your code here
+    // method 1
+    for (let key in p) {
+        o[key] = p[key];
+      }
+      return o;
     
+    // method 2
+    return Object.assign(o,p);
 }
 
 /*
@@ -13,7 +19,12 @@ function extend(o, p) {
 * If o and p have properties by the same name, the values from o are used.
 */
 function union(o, p) {
-    // implement your code here
+    // method 1 using shallow copy
+    const result = {...p, ...o};
+    return result;
+
+    // method 2 using assign
+    return Object.assign({}, p, o);
 }
 
 /*
@@ -21,7 +32,30 @@ function union(o, p) {
 * Return o.
 */
 function restrict(o, p) {
-    // implement your code here
+    // method 1
+    for (let key in o){
+        if (!(key in p)){
+            delete o[key];
+        }
+    }
+    return o;
+
+    //method 2 
+    Object.keys(o).forEach(key => {
+        if (!(key in p)){
+            delete o[key];
+        }
+    });
+    return o;
+
+    //method 3
+    return Object.keys(o).reduce((acc, key) => {
+        if (key in p){
+            acc[key] = o[key];
+        }
+        return acc;
+    }, {});
+
 }
 
 /*
@@ -30,5 +64,20 @@ function restrict(o, p) {
 * the properties in p are discarded
 */
 function intersection(o, p) {
-    // implement your code here
+    // method 1
+    const result = {};
+    for (let key in o){
+        if (key in p){
+            result[key] = o[key];
+        }
+    }
+    return result;
+
+    //method 2
+    return Object.keys(o).reduce((acc, key) => {
+        if (key in p){
+            acc[key] = o[key];
+        }
+        return acc;
+    }, {});
 }

@@ -14,3 +14,29 @@
  */
 
 // your code here
+
+const fs = require("fs");
+const path = require("path");
+
+// Get command-line arguments
+const dirPath = process.argv[2]; // Directory name
+const extension = `.${process.argv[3]}`; // Extension with dot prefix
+
+// Check if both arguments are provided
+if (!dirPath || !process.argv[3]) {
+  console.error("Usage: node hw1.js <directory> <extension>");
+  process.exit(1);
+}
+
+// Read the directory
+fs.readdir(dirPath, (err, files) => {
+  if (err) {
+    console.error("Error reading directory:", err.message);
+    process.exit(1);
+  }
+
+  // Filter files by extension and print each matching file
+  files
+    .filter((file) => path.extname(file) === extension)
+    .forEach((file) => console.log(file));
+});

@@ -14,7 +14,7 @@ const app = express();
 
 app.use(express.static('public'));
 
-app.get('/home.html/:name/:age', (req, res) => {
+app.get('/home.html', (req, res) => {
     const { name = '', age = '' } = req.query;
     res.render('home.html', { name: name, age: age });
 

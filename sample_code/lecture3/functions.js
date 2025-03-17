@@ -16,6 +16,7 @@ let greet = function (name) {
 };
 
 greet.call(null, 'Aaron'); // Outputs: Hello, Aaron!
+greet.apply(null, ['Aaron']);
 
 let person = {
   name: 'Aaron',
@@ -23,8 +24,12 @@ let person = {
     console.log('Hello, ' + this.name + '!');
   }
 };
+let person2 = {
+  name;'Alex',
+}
 
 person.greet(); // Outputs: Hello, Aaron!
+person.greet().call(person2); // Output Alex
 
 /**
  * `this` context

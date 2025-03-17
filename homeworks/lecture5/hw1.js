@@ -4,6 +4,10 @@
 for (var i = 0; i < 5; i++) {
   setTimeout(() => console.log(i), 1000);
 }
+// 5, 5, 5, 5, 5 
+// var i is global variable, When setTimeout executes after 
+// 1 second, the loop has already finished, and i is 5.
+// all callbacks are reference the same i.
 
 // 4, 4, 4, 4, 4
 // because setTimeout push console.log(i) to the callback queue and they only execute when the main script is finished
@@ -24,8 +28,8 @@ for (var i = 0; i < 5; i++) {
   })(i);
 }
 // 0, 1, 2, 3, 4
-// although i is declared with var, the inner iife functions creates a new scope for each iteration. so the result is the same as when i is declared with let
-
+//create a new scope for each iteration, so i is local variable
+// and it logs the correct i value for each iteration.
 
 // 4
 let fn = () => {
@@ -44,4 +48,7 @@ let obj = {
 }
 setTimeout(() => console.log(obj), 1000);
 obj.name = 'another obj';
-//{"name": another obj}
+// { name: 'another obj' }
+// setTimeout(() => console.log(obj), 1000); captures a reference to obj, not a copy.
+// Before setTimeout executes, obj.name is modified to 'another obj'.
+//Since console.log(obj) prints the current state of obj, it logs { name: 'another obj' }.

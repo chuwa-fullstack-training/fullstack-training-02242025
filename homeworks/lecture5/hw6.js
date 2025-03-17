@@ -4,42 +4,8 @@
  * @param {string[]} urls - an array of urls
  * @returns {any[]} - an array of responses
  */
-import https from 'https';
-
-
-function getJSON(url) {
-  // implement your code here
-  return new Promise((resolve, reject) =>{
-    const options = {
-          headers: {
-            'User-Agent': 'request'
-          }
-        };
-    https.get(url, options, response =>{
-      if(response.statusCode != 200){
-        reject(new Error (`Request failed: ${response.statusCode}`));
-        return;
-      }
-      let data = '';
-      response.on('data', chunk => {
-        data += chunk;
-      })
-
-      response.on('end', () => {
-        try{
-          const jsonData = JSON.parse(data);
-          resolve(jsonData);
-        }catch(err){
-          reject(new Error(`Failed to parse JSON: ${err.message}`));
-        }
-      });
-    }).on('error', err => {
-      reject(new Error(`Request error: ${error.message}`));
-    })
-  });
-}
-
-async function sequencePromise(urls) {
+const https = require('https');
+function sequencePromise(urls) {
   const results = [];
   function fetchOne(url) {
     // for `getJSON` function you can choose either from the implementation of hw5 or `fetch` version provided by browser
@@ -47,22 +13,46 @@ async function sequencePromise(urls) {
     return getJSON(url).then(response => results.push(response));
   }
   // implement your code here
-  for(const url of urls){
-    try{
-      const response = await getJSON(url);
-      results.push(response);
-    }catch(err){
-      console.error(err.message);
-    }
-  }
-  
-  return results;
+
+  return urls.reduce((promiseChain, url) => {
+    return promiseChain.then(() => fetchOne(url));
+  }, Promise.resolve())
+  .then(() => results);
 }
 
 // option 1
-// function getJSON(url) {
-//   // this is from hw5
-// }
+function getJSON(url) {
+  return new Promise((resolve, reject) => {
+    const options = {
+      headers: { 'User-Agent': 'request' } 
+    };
+
+    const request = https.get(url, options, (response) => {
+      let data = '';
+
+      if (response.statusCode !== 200) {
+        reject(new Error(`Request failed. Status Code: ${response.statusCode}`));
+        response.resume(); 
+        return;
+      }
+
+      response.on('data', (chunk) => {
+        data += chunk;
+      });
+
+      response.on('end', () => {
+        try {
+          resolve(JSON.parse(data));
+        } catch (error) {
+          reject(new Error(`Error parsing JSON: ${error.message}`));
+        }
+      });
+    });
+
+    request.on('error', (err) => reject(new Error(`Request error: ${err.message}`)));
+  });
+}
+
 
 // option 2
 // function getJSON(url) {
@@ -76,5 +66,6 @@ const urls = [
   'https://api.github.com/search/repositories?q=nodejs'
 ];
 
-const res = await sequencePromise(urls);
-res.forEach((value)=>console.log(value.items.length));
+sequencePromise(urls)
+  .then(results => console.log(results.map(res => res.items.length))) // Expected output: [30, 30, 30]
+  .catch(err => console.error(err.message));

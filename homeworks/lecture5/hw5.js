@@ -39,33 +39,33 @@ const https = require('https');
 
 function getJSON(url) {
   // implement your code here
-  return new Promise((resolve, reject) =>{
+  return new Promise((resolve, reject) => {
     const options = {
-          headers: {
-            'User-Agent': 'request'
-          }
-        };
-    https.get(url, options, response =>{
-      if(response.statusCode != 200){
-        reject(new Error (`Request failed: ${response.statusCode}`));
+      headers: { 'User-Agent': 'request' } 
+    };
+
+    const request = https.get(url, options, (response) => {
+      let data = '';
+
+      if (response.statusCode !== 200) {
+        reject(new Error(`Request failed. Status Code: ${response.statusCode}`));
+        response.resume(); 
         return;
       }
-      let data = '';
-      response.on('data', chunk => {
+
+      response.on('data', (chunk) => {
         data += chunk;
-      })
+      });
 
       response.on('end', () => {
-        try{
-          const jsonData = JSON.parse(data);
-          resolve(jsonData);
-        }catch(err){
-          reject(new Error(`Failed to parse JSON: ${err.message}`));
+        try {
+          resolve(JSON.parse(data));
+        } catch (error) {
+          reject(new Error(`Error parsing JSON: ${error.message}`));
         }
       });
-    }).on('error', err => {
-      reject(new Error(`Request error: ${error.message}`));
-    })
+    });
+    request.on('error', (err) => reject(new Error(`Request error: ${err.message}`)));
   });
 }
 

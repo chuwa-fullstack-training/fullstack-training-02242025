@@ -5,6 +5,7 @@ for (var i = 0; i < 5; i++) {
   setTimeout(() => console.log(i), 1000);
 }
 //print 5, 5, 5, 5, 5 after 1s
+//for will execute first it is synchrons function
 //each iteration schedules a setTimeout() to execute after 1 second
 //var, it is function-scoped
 //all 5 callback are queued in callback queue after 1s with the i = 5

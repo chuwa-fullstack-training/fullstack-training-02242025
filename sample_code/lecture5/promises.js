@@ -1,3 +1,8 @@
+// you also could created promise by using class static method
+//A static method in JavaScript is a method that belongs to a class itself, rather than to instances of the class.
+// It can be called directly on the class without creating an object.
+//Promise.resolve("Success");
+
 function getJSON(url) {
   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();

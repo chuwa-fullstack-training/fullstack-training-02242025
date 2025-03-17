@@ -17,7 +17,7 @@
  *   ...
  *   }
  * ]}
- * 
+ *
  * result from https://hn.algolia.com/api/v1/search?query=banana&tags=story:
  * {
  *  "hits": [
@@ -27,7 +27,7 @@
  *   ...
  *   }
  * ]}
- * 
+ *
  * final result from http://localhost:3000/hw2?query1=apple&query2=banana:
  * {
  *   "apple":
@@ -42,3 +42,29 @@
  *  }
  * }
  */
+const express = require('express');
+const router = express.Router();
+
+
+router.get("/hw2", async (req, res) => {
+    const { query1, query2 } = req.query;
+    if (!query1 || !query2) {
+        return res.status(400).json({ error: "Both 'query1' and 'query2' parameters are required." });
+    }
+
+    try{
+        const[promise1, promise2] = await Promise.all([
+            fetch(`https://hn.algolia.com/api/v1/search?query=${query1}&tags=story`),
+            fetch(`https://hn.algolia.com/api/v1/search?query=${query2}&tags=story`)]
+        )
+        // fetch() does not directly return JSON. it returns a promise need to be resolved with .json()
+        const[data1, data2] = await Promise.all(promise1.json(), promise2.json())
+        const result = {
+            [query1]: data1.hits.length > 0 ? data1.hits[0] : null,
+            [query2]: data2.hits.length > 0 ? data2.hits[0] : null
+        };
+        res.json(result)
+    } catch {
+        res.status(500).json({ error: "Failed to fetch data from Hacker News API." });
+    }
+})

@@ -16,3 +16,9 @@ function f() {
   console.log('inside f', 'a:', a, 'x:', x);
 }
 f();
+
+
+// Scope refers to where variables are accessible in your code (e.g., within a function, globally, etc.). It defines the visibility of variables.
+
+// Value Passing (or pass-by-value) means that when you pass a primitive data type (like a string, number, boolean) to a function, the function gets a copy of that value, not a reference to the original variable. Therefore,
+// changes to that value inside the function do not affect the original value outside the function.

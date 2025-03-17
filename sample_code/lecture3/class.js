@@ -36,7 +36,7 @@ class Cat extends Animal {
     this.type = 'feline';
     this.live = 9;
   }
-
+  // add static method if the method doesn't depend on the name of cat
   speak() {
     console.log(`${this.name} meows.`);
   }

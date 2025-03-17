@@ -11,5 +11,11 @@
  *
  */
 const intersection = (nums1, nums2) => {
-  // Your solution here
+  const nums2Set = new Set(nums2);
+  return nums1.reduce((acc, curr) => {
+    if (nums2Set.has(curr)){
+      acc.add(curr);
+    }
+    return acc;
+  }, new Set())
 };

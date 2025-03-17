@@ -8,6 +8,7 @@ sum(numbers[0], numbers[1], numbers[2]); // 6
 
 console.log(sum(...numbers)); // 6
 
+// compress all rest elements into single array
 function restFn(x, y, ...rest) {
   return x + y + rest;
 }

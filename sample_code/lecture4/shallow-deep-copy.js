@@ -8,6 +8,8 @@ const shallowCopy = originalData;
 shallowCopy.a = '456';
 console.log(originalData.a);
 
+// deep copy
+
 const deepCopy = JSON.parse(JSON.stringify(originalData));
 // const deepCopy = { ...originalData }; // Object.assign({}, originalData);
 deepCopy.a = '789';

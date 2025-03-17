@@ -8,3 +8,28 @@
  */
 
 // your code here
+// ES6 using class
+class Singleton {
+    constructor() {
+      if (Singleton.instance) {
+        return Singleton.instance;
+      }
+      Singleton.instance = this;
+      this.timestamp = new Date(); // Example property
+    }
+  }
+  
+  //ES5 using constructor function and IIFE
+  var Singleton = (function () {
+    var instance;
+  
+    function Singleton() {
+      if (instance) {
+        return instance;
+      }
+      instance = this;
+      this.timestamp = new Date(); // Example property
+    }
+  
+    return Singleton;
+  })();

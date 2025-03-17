@@ -52,7 +52,7 @@ function createUser({ firstName, lastName, email }) {
 
 // SELECT * FROM users;
 function findAllUsers() {
-  return User.findAll();
+  return User.findAll(); //return a promise
 
   // SELECT firstName, lastName FROM users;
   // return User.findAll({ attributes: ['firstName', 'lastName'] })
@@ -84,7 +84,7 @@ function deleteUser(id) {
 }
 
 sequelize
-  .sync({ force: true })
+  .sync({ force: true }) //will drop all models and use the above to recreate
   .then(() => {
     console.log('tables created successfully!');
     // createUser({ firstName: 'something', lastName: 'new', email: 'unknown@test.com' });

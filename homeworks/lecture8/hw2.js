@@ -57,7 +57,7 @@ router.get("/hw2", async (req, res) => {
             fetch(`https://hn.algolia.com/api/v1/search?query=${query1}&tags=story`),
             fetch(`https://hn.algolia.com/api/v1/search?query=${query2}&tags=story`)]
         )
-        // fetch() does not directly return JSON. it returns a promise need to be resolved with .json()
+        // fetch() does not directly return JSON
         const[data1, data2] = await Promise.all(promise1.json(), promise2.json())
         const result = {
             [query1]: data1.hits.length > 0 ? data1.hits[0] : null,

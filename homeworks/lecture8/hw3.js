@@ -4,10 +4,8 @@
 
 
 
-// In asynchronous functions like fetch() or database queries,
-// using a try-catch block helps handle errors,
-// but for synchronous operations like rendering templates and handling form data,
-// errors are typically caught by Express's error-handling mechanism.
+// asynchronous functions: try-catch block helps handle errors
+//synchronous operations rendering templates and handling form data no need
 
 const express = require('express');
 const app = express();

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+  </head>
+  <body>
+    <h1>Submit Your Data</h1>
+    <form method="POST" action="/home.html">
+      Name: <input type="text" name="name" /><br />
+      Age: <input type="text" name="age" /><br />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <% if (data && (data.name || data.age)) { %>
+    <h2>Submitted Data</h2>
+    <p>Name: <%= data.name || '' %></p>
+    <p>Age: <%= data.age || '' %></p>
+    <% } %>
+  </body>
+</html>

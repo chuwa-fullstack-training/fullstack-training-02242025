@@ -1,37 +1,34 @@
-const express = require('express');
+const express = require("express");
+// const mongoose = require("mongoose");
+const todoRoutes = require("../routes/todoRoutes"); // ✅ Import Correctly
+const path = require("path");
 
 const app = express();
+const PORT = 3001;
 
-app.use(express.static('public'));
+// ✅ Connect to MongoDB
+const mongoose = require("mongoose");
+
+mongoose
+  .connect(
+    "mongodb+srv://sr5553:NAKZGbt9MwoqVCFm@cluster0.rph2b.mongodb.net/todoDB?retryWrites=true&w=majority"
+  )
+
+  .then(() => console.log("MongoDB Atlas Connected"))
+  .catch((err) => console.error("MongoDB Connection Error:", err));
+
+// ✅ Middleware
+app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.set('view engine', 'pug');
-app.set('views', './views');
+// ✅ Set Pug as Template Engine
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
 
-const todos = [
-  { id: 1, todo: 'first thing', done: true },
-  { id: 2, todo: 'second thing', done: false },
-  { id: 3, todo: 'third thing', done: false }
-];
+// ✅ Use todoRoutes correctly
+app.use("/api/todos", todoRoutes); // Ensure `todoRoutes` is imported correctly
 
-app.get('/', (req, res) => {
-  res.render('index', { todos });
-});
-
-app.post('/api/todos', (req, res) => {
-  const todo = req.body.todo;
-  todos.push({ id: todos.length + 1, todo, done: false });
-  res.json(todos);
-});
-
-app.put('/api/todos/:id', (req, res) => {
-  const id = parseInt(req.params.id, 10);
-  const todo = todos.find(t => t.id === id);
-  todo.done = !todo.done;
-  res.json(todo);
-});
-
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
+app.listen(PORT, () =>
+  console.log(`Todo App running at http://localhost:${PORT}`)
+);

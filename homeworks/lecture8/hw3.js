@@ -5,7 +5,7 @@
 
 
 // asynchronous functions: try-catch block helps handle errors
-//synchronous operations rendering templates and handling form data no need
+//synchronous operations rendering templates and handling form data no need try catch
 
 const express = require('express');
 const app = express();

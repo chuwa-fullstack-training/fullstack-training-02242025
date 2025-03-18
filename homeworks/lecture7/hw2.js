@@ -49,7 +49,7 @@ const server = http.createServer((req, res) => {
             return res.end(JSON.stringify(response))
         }
         res.writeHead(405, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'Method Not Allowed' }));
+        return res.end(JSON.stringify({ error: 'Method Not Allowed' }));
     }
 
 });

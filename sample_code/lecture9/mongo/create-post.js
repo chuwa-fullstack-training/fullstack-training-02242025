@@ -19,7 +19,7 @@ user
     post = new Post({
       title: 'another',
       content: 'this is test content',
-      authorId: user._id
+      authorId: user._id //this _id is the user object not string
     });
 
     return post.save();

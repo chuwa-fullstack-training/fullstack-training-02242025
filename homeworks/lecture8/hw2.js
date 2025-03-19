@@ -42,3 +42,46 @@
  *  }
  * }
  */
+
+const express = require('express');
+const axios = require('axios');
+
+const app = express();
+const PORT = 3000;
+
+app.get('/hw2', async (req, res) => {
+    const { query1, query2 } = req.query;
+
+    if (!query1 || !query2) {
+        return res.status(400).json({ error: "Missing query1 or query2 parameters" });
+    }
+
+    try {
+        // Fetch data concurrently
+        const [response1, response2] = await Promise.all([
+            axios.get(`https://hn.algolia.com/api/v1/search?query=${query1}&tags=story`),
+            axios.get(`https://hn.algolia.com/api/v1/search?query=${query2}&tags=story`)
+        ]);
+
+        // Extract the first story from each response
+        const result = {
+            [query1]: response1.data.hits.length > 0 ? {
+                created_at: response1.data.hits[0].created_at,
+                title: response1.data.hits[0].title
+            } : null,
+            
+            [query2]: response2.data.hits.length > 0 ? {
+                created_at: response2.data.hits[0].created_at,
+                title: response2.data.hits[0].title
+            } : null
+        };
+
+        res.json(result);
+    } catch (error) {
+        res.status(500).json({ error: "Failed to fetch data from HN Algolia API" });
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+});

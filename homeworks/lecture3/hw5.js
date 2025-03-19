@@ -12,5 +12,16 @@
  * user.password; // undefined
  */
 function User() {
-    // implement here
+    let password = undefined; // 私有变量，外部无法访问
+
+    this.setPassword = function(newPassword) {
+        if (newPassword.length < 6) {
+            throw new Error('Password must be at least 6 characters long.');
+        }
+        password = newPassword;
+    };
+
+    this.checkPassword = function(inputPassword) {
+        return password === inputPassword;
+    };
 }

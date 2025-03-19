@@ -1,17 +1,47 @@
-function Shape() {
-    this.type = 'shape';
+class Shape {
+    constructor() {
+        this.type = 'shape';
+    }
+
+    getType() {
+        return this.type;
+    }
+}
+class Triangle extends Shape {
+    constructor(a, b, c) {
+        super();
+        this.type = 'triangle';
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    getPerimeter() {
+        return this.a + this.b + this.c;
+    }
+
+    getArea() {
+        let s = this.getPerimeter() / 2;
+        return Math.sqrt(s * (s - this.a) * (s - this.b) * (s - this.c));
+    }
 }
 
-Shape.prototype.getType = function() {
-    return this.type;
+class Circle extends Shape {
+    constructor(radius) {
+        super();
+        this.type = 'circle';
+        this.radius = radius;
+    }
+
+    getArea() {
+        return Math.PI * this.radius ** 2;
+    }
+
+    getCircumference() {
+        return 2 * Math.PI * this.radius;
+    }
 }
 
-function Triangle(a, b, c) {
-    this.type = 'triangle';
-    this.a = a;
-    this.b = b;
-    this.c = c;
-}
 
 Triangle.prototype = Object.create(Shape.prototype);
 Triangle.prototype.constructor = Triangle;

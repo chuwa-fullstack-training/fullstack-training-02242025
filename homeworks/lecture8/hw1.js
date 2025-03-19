@@ -26,7 +26,7 @@ app.get('/hw1/:dir/:ext', (req, res) => {
     const { dir, ext } = req.params;
     const baseDir = path.join(__dirname, dir);
     let rsl = []
-    //fs.readdiris async
+    //fs.readdiris async, will call cb when read finish
     fs.readdir(baseDir, (err, data) => {
         if(err) {
             return res.status(500).json({ error: 'Unable to read directory' });

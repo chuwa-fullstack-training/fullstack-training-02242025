@@ -1,3 +1,6 @@
+// ✅ An async function always returns a Promise, even if you return a simple value.
+// ✅ If an async function explicitly returns a Promise, JavaScript does not double-wrap it.
+
 const response = await getJSON(
   'https://api.github.com/users/chuwa-fullstack-training'
 );

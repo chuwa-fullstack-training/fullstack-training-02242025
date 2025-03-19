@@ -3,6 +3,11 @@
 // It can be called directly on the class without creating an object.
 //Promise.resolve("Success");
 
+
+// When you use return inside an async function, it automatically wraps the returned value in a resolved Promise.
+
+// So, if you return a value from an async function, JavaScript will implicitly resolve the Promise with that value, which is similar to using resolve().
+
 function getJSON(url) {
   return new Promise((resolve, reject) => {
     const request = new XMLHttpRequest();

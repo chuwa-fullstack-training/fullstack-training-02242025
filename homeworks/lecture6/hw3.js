@@ -71,11 +71,9 @@ const obj = {
   }
 };
 
-
 const throttledLog = throttle(obj.logMessage.bind(obj), 2000);
-
 
 setInterval(() => {
   throttledLog(); // Throttled function will only run once every 2 seconds
-  //obj.throttledLog()
+  //obj.throttledLog() another way to bind, 'this' will be obj
 }, 500); // 500ms interval between calls

@@ -1,5 +1,8 @@
 // what is the output in order? and explain why?
 
+
+// .then() always runs asynchronously
+
 // 1
 console.log('a');
 setTimeout(() => console.log('b'), 0);

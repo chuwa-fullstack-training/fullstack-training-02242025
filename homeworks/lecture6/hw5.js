@@ -34,7 +34,8 @@ const nums = [3, 1, 6, 9, 2];
 // function printList(nums) {
 //   nums.reduce((promise, ele) => {
 //     return promise.then(() => {
-//       setTimeout(() => console.log(ele), 1000)
+//       setTimeout(() => console.log(ele), 1000) //need to have the resolve inside settimeout call back otherwise the implicit return will run with settimeout and not wait until 1000
+////need to wrap the settimeout with promise constructor
 //     })
 //   }, Promise.resolve())
 // }

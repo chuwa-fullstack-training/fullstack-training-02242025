@@ -6,14 +6,14 @@
  */
 const { getJSON } = require('./hw5.js');
 
-//one way:
+// one way:
 // function sequencePromise(urls) {
 //   const results = [];
-//   function fetchOne(url) {
-//     // for `getJSON` function you can choose either from the implementation of hw5 or `fetch` version provided by browser
-//     // if you use `fetch`, you have to use browser console to test this homework
-//     return getJSON(url).then(response => results.push(response));
-//   }
+//   // function fetchOne(url) {
+//   //   // for `getJSON` function you can choose either from the implementation of hw5 or `fetch` version provided by browser
+//   //   // if you use `fetch`, you have to use browser console to test this homework
+//   //   return getJSON(url).then(response => results.push(response));
+//   // }
 //   return urls.reduce((promise, url) => {
 //     return promise
 //            .then(() => getJSON(url))

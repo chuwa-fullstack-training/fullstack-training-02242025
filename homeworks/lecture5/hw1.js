@@ -1,5 +1,8 @@
 // what is the output of the following code? and explain why?
 
+
+// resolve() happens instantly, .then() executes asynchronously
+
 // 1
 for (var i = 0; i < 5; i++) {
   setTimeout(() => console.log(i), 1000);
@@ -24,6 +27,7 @@ for (var i = 0; i < 5; i++) {
   })(i);
 }
 //function(i){}(i) is IFFI and creates a new function scope with a fresh copy of i
+// i is passed as a function argument,
 //When setTimeout executes after 1 second,
 //it references the i from its own function scope, which is preserved correctly
 //print 0, 1, 2, 3, 4 after 1s

@@ -24,6 +24,7 @@ const server = http.createServer((req, res) => {
     if (req.method === 'GET') {
         if (pathname.startsWith('/home.html')) {
             // Read and serve home.html with query parameters
+            //when file reading is done, the callback runs
             fs.readFile(path.join(__dirname, 'home.html'), 'utf8', (err, data) => {
                 if (err) {
                     res.writeHead(500, { 'Content-Type': 'text/plain' });

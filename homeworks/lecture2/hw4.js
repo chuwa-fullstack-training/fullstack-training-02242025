@@ -1,29 +1,29 @@
 // Below are some JavaScript scope related questions.
 
 // 1. When executed, what value will be output?
-function f() {
+function f1() {
   var a = 10;
   if (a > 5) {
     a = 7;
   }
   console.log(a);
 }
-
+//7
 // 2. When executed, what value will be output?
-function f() {
+function f2() {
   if (true) {
     var a = 5;
   }
   console.log(a);
 }
-
+//undefined
 // 3. When executed, what value will be output?
-function f() {
+function f3() {
   a = 3;
 }
 f();
 console.log(a);
-
+//3
 // 4.
 var a = 5;
 function first() {
@@ -35,14 +35,14 @@ function second() {
 }
 first();
 second();
-
+//6
 // 5.
 var a = 5;
-function f() {
+function f4() {
   var a = 7;
   console.log(a);
 }
-
+//7
 // 6.
 var a = 1;
 function b() {
@@ -52,3 +52,4 @@ function b() {
 }
 b();
 console.log(a);
+//NaN

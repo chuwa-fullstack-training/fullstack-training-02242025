@@ -34,5 +34,6 @@ const printPerson = ({ name, age, city }) => {
   
   printPersonWithDefault(person); // Output: Name: John, Age: 30, City: New York
 
-
+// destructure to get multiple promise return
+let [val1, val2] = await Promise.all([getJSON('url1'), getJSON('url2')]);
 

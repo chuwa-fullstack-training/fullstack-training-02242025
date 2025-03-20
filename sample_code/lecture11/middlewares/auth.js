@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 
 module.exports = async (req, res, next) => {
   // Get token from header
+  //服务器会使用接收到的 Header 和 Payload 重新计算签名，并与传输过来的签名进行比较，以确保 JWT 没有被篡改-----------------------------------------+
   const token =
     req.header('x-auth-token') ||
     req.headers?.authorization?.match(/^Bearer (.+)/)[1];

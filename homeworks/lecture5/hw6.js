@@ -9,9 +9,12 @@ function sequencePromise(urls) {
   function fetchOne(url) {
     // for `getJSON` function you can choose either from the implementation of hw5 or `fetch` version provided by browser
     // if you use `fetch`, you have to use browser console to test this homework
+
     return getJSON(url).then(response => results.push(response));
   }
+  
   // implement your code here
+
 
   return results;
 }

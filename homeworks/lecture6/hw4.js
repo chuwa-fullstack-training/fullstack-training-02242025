@@ -6,4 +6,7 @@
  */
 function format(num) {
   // your code here
+  let [integer, decimal] = num.toString().split('.');
+  integer = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return decimal ? integer + '.' + decimal : integer;
 }

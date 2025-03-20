@@ -37,3 +37,14 @@ function logPerson(person: Person) {
 }
 
 persons.forEach(logPerson);
+// Error: Property 'role' does not exist on type 'Person'.
+// Solution: Add a type guard to the function
+//function logPerson(person: Person) {
+//  let additionalInformation: string;
+//  if ("role" in person) {
+//    additionalInformation = person.role;
+//  } else {
+//    additionalInformation = person.occupation;
+//  }
+//  console.log(` - ${person.name}, ${person.age}, ${additionalInformation}`);
+//}

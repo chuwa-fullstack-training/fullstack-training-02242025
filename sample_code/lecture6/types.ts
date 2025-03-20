@@ -46,8 +46,8 @@ let userName2: any = userInput;
 // let userName3: number = notSure;
 
 // type: object
-let obj1: object = { name: 'Aaron' };
-let obj2: object = function () {};
+let obj1: {name : string} = { name: 'Aaron' };
+let obj2 = (): () => void => {return function () {}};
 let obj3: object = [1, 2, 3];
 
 // type: void

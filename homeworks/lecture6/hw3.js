@@ -15,6 +15,14 @@
  */
 function debounce(func, delay) {
   // your code here
+  let timeout;
+
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      func.apply(this, args); 
+    }, delay);
+  };
 }
 
 /**
@@ -34,4 +42,12 @@ function debounce(func, delay) {
  */
 function throttle(func, delay) {
   // your code here
+  let recentCall = 0; 
+  return function(...args) {
+    const now = Date.now();
+    if (now - recentCall >= delay) {
+      recentCall = now;        
+      func.apply(this, args); 
+    }
+  };
 }

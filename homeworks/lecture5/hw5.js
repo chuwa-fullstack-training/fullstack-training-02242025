@@ -51,7 +51,7 @@ function getJSON(url) {
         reject(
           new Error(`Did not get an OK from the server. Code: ${response.statusCode}`)
         );
-        response.resume(); // To handle error response properly
+        response.resume(); 
         return;
       }
 
@@ -63,19 +63,19 @@ function getJSON(url) {
       response.on('end', () => {
         try {
           const parsedData = JSON.parse(data);
-          resolve(parsedData); // Resolve the promise with parsed data
+          resolve(parsedData); 
         } catch (e) {
-          reject(new Error(`Error parsing JSON: ${e.message}`)); // Reject on JSON parse error
+          reject(new Error(`Error parsing JSON: ${e.message}`)); 
         }
       });
     });
 
     request.on('error', err => {
-      reject(new Error(`Encountered an error trying to make a request: ${err.message}`)); // Reject on request error
+      reject(new Error(`Encountered an error trying to make a request: ${err.message}`)); 
     });
   });
 }
 
 getJSON('https://api.github.com/search/repositories?q=javascript')
-  .then(response => console.log(response.items.length)) // output: 30
-  .catch(err => console.log(err)); // if you remove options from https.get parameters, you might see an error
+  .then(response => console.log(response.items.length)) 
+  .catch(err => console.log(err)); 

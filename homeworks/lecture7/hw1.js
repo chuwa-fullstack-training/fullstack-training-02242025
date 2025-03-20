@@ -12,5 +12,26 @@
  *  - process.argv[2] is the first command-line argument
  *    e.g. node hw1.js currentDir txt - process.argv[2] is `currentDir`, process.argv[3] is `txt`
  */
+const fs = require('fs');
+const path = require('path')
 
-// your code here
+function printFile(dir, extension) {
+    fs.readdir(dir, (err, files)=>{
+        if(err){
+            console.error("Error when reading directory", err)
+            return
+        }
+        files.forEach(file => {
+            const ext = extname(file).slice(1)
+            if(ext === extension){
+                console.log(file)
+            }
+        })
+    })
+}
+
+const directory = process.argv[2];
+const extension= process.argv[3]
+printFile(directory, extension)
+
+

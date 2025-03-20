@@ -18,4 +18,46 @@
  * 2. response.writeHead(200, { contentType: 'application/json' })
  */
 
-// your code here
+const http = require('http')
+const url = require('url')
+const PORT = 3000
+
+const server = http.createServer((req, res)=> {
+    const parsedUrl = url.parse(req.url, true)
+    const path = parsedUrl.pathname
+    const iso = parsedUrl.query.iso
+
+    if(path==="/api/parsetime" && iso){
+        try{
+            const date = new Date(iso)
+            const result = {
+                hour: date.getUTCHours(),
+                minute: date.getUTCMinutes(),
+                second: date.getUTCSeconds()
+            }
+            // send json response
+            res.writeHead(200, { contentType: 'application/json' })
+            res.end(JSON.stringify(result))
+        }catch(error){
+            res.end('Error when read iso')
+        }
+    }else if(path==="/api/unixtime" && iso){
+        try{
+            const date = new Date(iso)
+            const result = {
+                unixtime: date.getTime()
+            };
+            res.writeHead(200, { contentType: 'application/json' })
+            res.end(JSON.stringify(result))
+        }catch(error){
+            res.end('Error when read iso')
+        }  
+    }else{
+        res.end('Error when parse the request url')
+    }
+
+})
+
+server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });

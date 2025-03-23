@@ -19,3 +19,41 @@
  */
 
 // your code here
+const http = require('http');
+const url = require('url');
+
+const server = http.createServer((request, response) => {
+    const parsed = url.parse(request.url, true);
+    const iso = parsed.query.iso;
+    const date = new Date(iso);
+    let output;
+
+    if (!iso) {
+        response.writeHead(400, { contentType: 'application/json' });
+        response.end(JSON.stringify({ error: 'Missing query parameter' }));
+        return;
+    }
+
+    switch (parsed.pathname) {
+        case '/api/parsetime':
+            output = {
+                hour: date.getUTCHours(),
+                minute: date.getUTCMinutes(),
+                second: date.getUTCSeconds()
+            }
+            break;
+        case '/api/unixtime':
+            output = {
+                unixtime : date.getTime()
+            };
+            break;
+        default:
+            response.writeHead(404, { contentType: 'application/json' });
+            response.end(JSON.stringify({ error: 'Invalid query parameter' }));
+            return;
+    }
+    response.writeHead(200, { contentType: 'application/json' });
+    response.end(JSON.stringify(output));
+}
+);
+server.listen(3000, () => console.log('Server running at http://localhost:3000'));

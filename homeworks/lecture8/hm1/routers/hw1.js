@@ -14,24 +14,28 @@
  */
 
 // your code here
+const express = require("express");
+const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 
-const dirPath = process.argv[2];
-const fileType = "." + process.argv[3];
+router.get("/:dir/:ext", (request, response) => {
 
-if (!dirPath || !fileType) {
-  console.error("Usage: node hw1.js <directory> <extension>");
-  process.exit(1);
-}
-
-fs.readdir(dirPath, (err, files) => {
-  if (err) {
-    console.error("Error reading directory:", err.message);
-    return;
+  const dirPath = request.params.dir;
+  const fileType = "." + request.params.ext;
+  if (!dirPath || !fileType) {
+    console.error("Usage: node hw1.js <directory> <extension>");
+    process.exit(1);
   }
+  
+  fs.readdir(dirPath, (err, files) => {
+    if (err) {
+      return response.status(400).json({error : "Error reading directory:" + err.message});
+    }
 
-  files
-    .filter(file => path.extname(file) === fileType)
-    .forEach(file => console.log(file));
+    response.json(files.filter(file => path.extname(file) === fileType));
+  });
 });
+module.exports = router;
+
+// routers/hw1.js

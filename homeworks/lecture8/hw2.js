@@ -17,7 +17,7 @@
  *   ...
  *   }
  * ]}
- * 
+ *
  * result from https://hn.algolia.com/api/v1/search?query=banana&tags=story:
  * {
  *  "hits": [
@@ -27,7 +27,7 @@
  *   ...
  *   }
  * ]}
- * 
+ *
  * final result from http://localhost:3000/hw2?query1=apple&query2=banana:
  * {
  *   "apple":
@@ -42,3 +42,46 @@
  *  }
  * }
  */
+
+const express = require('express');
+const axios = require('axios');
+const app = express();
+
+const router = express.Router();
+
+router.get('/hw2', async (req, res) => {
+  const { query1, query2 } = req.query;
+
+  if (!query1 || !query2) {
+    return res.status(400).json({ error: 'Both query1 and query2 are required' });
+  }
+
+  try {
+    const response1 = await axios.get(`https://hn.algolia.com/api/v1/search?query=${query1}&tags=story`);
+    const response2 = await axios.get(`https://hn.algolia.com/api/v1/search?query=${query2}&tags=story`);
+
+    const result = {
+      [query1]: response1.data.hits[0] ? {
+        created_at: response1.data.hits[0].created_at,
+        title: response1.data.hits[0].title
+      } : {}, 
+      [query2]: response2.data.hits[0] ? {
+        created_at: response2.data.hits[0].created_at,
+        title: response2.data.hits[0].title
+      } : {},
+    };
+
+    res.json(result);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error fetching data from Algolia' });
+  }
+});
+
+app.use(router);
+
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});

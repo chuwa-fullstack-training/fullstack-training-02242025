@@ -6,16 +6,17 @@ class App extends React.Component {
     this.state = {
       count: 0
     };
-    // this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this); need to use this if the handleclick method is not arrow function
   }
 
-  // handleClick() { }
+  //handleClick() { }
+  //arrow function this is bind with the class instance
   handleClick = () => {
     this.setState({
       count: this.state.count + 1
     });
   }
-  
+
   render() {
     return (
       <div>

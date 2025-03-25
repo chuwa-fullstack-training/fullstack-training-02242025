@@ -12,10 +12,26 @@ class App extends React.Component {
     };
   }
 
+  //handleClick is a property on the App class instance
+  //setState is async
+  //state is updated by merging with original state
   handleClick = () => {
+    //one way: this.setState({ count: this.state.count + 1 });
+    //another way using callback function
+    //executed with the previous state (prevState) and props as arguments
+    // If multiple setState calls happen in quick succession,
+    // React might combine them into a single re-render,
+    // and all the updates will happen based on the same initial state
+    //this.setState(prevState => ({ counter: prevState.counter + 1 })) is called,
+    //and React batches this state update.
+    //React knows that the next setState function
+    //also needs to access the most recent state (because it’s using the callback pattern)
+    //so it will use the updated state for the next update.
+
     // this.setState(prevState => ({ counter: prevState.counter + 1 }));
     // this.setState(prevState => ({ counter: prevState.counter + 1 }));
     // this.setState(prevState => ({ counter: prevState.counter + 1 }));
+    //syntax: setState((prevState, props) => newState)
     this.setState({ counter: this.state.counter + 1 }, () => {
       console.log('in setState callback, counter: ', this.state.counter);
     });

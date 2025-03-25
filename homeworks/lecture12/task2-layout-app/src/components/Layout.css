@@ -1,0 +1,67 @@
+/* Base Container */
+.container {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.header {
+  background: lightgray;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Navigation */
+.nav {
+  background: gray;
+  padding: 15px;
+  font-size: 18px;
+}
+
+/* Main Content - Fix grid for Aside & Section */
+.content {
+  display: grid;
+  grid-template-columns: 1fr 3fr; /* Ensures aside is 1/4, section is 3/4 */
+  gap: 10px;
+  width: 100%;
+  align-items: stretch; /* Make sure both columns stretch */
+}
+
+/* Aside */
+.aside {
+  background: darkgray;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Section */
+.section {
+  background: white;
+  padding: 20px;
+  font-size: 18px;
+  border: 1px solid black;
+  flex-grow: 1; /* Ensures section grows */
+}
+
+/* Footer */
+.footer {
+  background: lightgray;
+  padding: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .content {
+    grid-template-columns: 1fr; /* Stack Aside & Section on mobile */
+  }
+}

@@ -1,0 +1,26 @@
+.ordinal-converter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+  }
+  
+  .input-container,
+  .result-container {
+    margin-bottom: 20px;
+  }
+  
+  input {
+    padding: 10px;
+    font-size: 1.2rem;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  

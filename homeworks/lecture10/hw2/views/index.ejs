@@ -1,0 +1,22 @@
+<%- include('layout') %>
+
+<div class="todo-list">
+  <h2>Todos</h2>
+  
+  <form action="/add" method="POST">
+    <input type="text" name="title" placeholder="Enter a todo..." required />
+    <button type="submit">Add Todo</button>
+  </form>
+
+  <ul>
+    <% todos.forEach(todo => { %>
+      <li>
+        <form action="/update/<%= todo._id %>" method="POST" style="display:inline;">
+          <input type="checkbox" name="completed" <% if(todo.completed) { %> checked <% } %> onChange="this.form.submit()">
+        </form>
+        <%= todo.title %>
+        <a href="/delete/<%= todo._id %>" style="color:red;">Delete</a>
+      </li>
+    <% }) %>
+  </ul>
+</div>

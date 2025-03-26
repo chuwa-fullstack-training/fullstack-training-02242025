@@ -1,0 +1,48 @@
+/* Styling for the counter */
+.counter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  
+  .count-display {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4caf50;
+    color: white;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  .reset-button {
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .reset-button:hover {
+    background-color: #e53935;
+  }
+  

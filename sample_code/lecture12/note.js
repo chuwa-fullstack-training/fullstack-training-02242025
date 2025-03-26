@@ -6,8 +6,7 @@
 // it is passed by reference.
 // This means that the receiving component can
 // call the function, and any changes
-// that the function makes
-// will reflect in the parent component,
+// that the function makes will reflect in the parent component,
 // as the same function reference is being used.
 
 //In JavaScript, functions are first-class objects, and when you pass a function as a prop, you're passing the reference to that function, not a copy of it.

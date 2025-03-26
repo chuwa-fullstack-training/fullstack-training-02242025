@@ -14,6 +14,10 @@ class App extends React.Component {
 
   //handleClick is a property on the App class instance
   //setState is async
+
+  //The setState() method is part of the React.Component class,
+  //so it’s available on all instances of the component.
+
   //state is updated by merging with original state
   handleClick = () => {
     //one way: this.setState({ count: this.state.count + 1 });

@@ -18,4 +18,44 @@
  * 2. response.writeHead(200, { contentType: 'application/json' })
  */
 
-// your code here
+const http = require('http');
+const url = require('url');
+
+const server = http.createServer((req, res) => {
+  if (req.method === 'GET') {
+    const parsedUrl = url.parse(req.url, true);
+    const pathname = parsedUrl.pathname;
+    const iso = parsedUrl.query.iso;
+
+    if (pathname === '/api/parsetime' && iso) {
+      const date = new Date(iso);
+      const result = {
+        hour: date.getHours(),
+        minute: date.getMinutes(),
+        second: date.getSeconds()
+      };
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(result));
+      return;
+    }
+
+    if (pathname === '/api/unixtime' && iso) {
+      const date = new Date(iso);
+      const result = {
+        unixtime: date.getTime()
+      };
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      res.end(JSON.stringify(result));
+      return;
+    }
+  }
+
+  res.writeHead(404, { 'Content-Type': 'text/plain' });
+  res.end('Not found');
+});
+
+const port = Number(process.argv[2]) || 3000;
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
+

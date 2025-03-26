@@ -14,14 +14,14 @@
 function User() {
     let password;
   
-    setPassword(newPassword) {
+    this.setPassword = function(newPassword) {
       if (password !== undefined) {
         throw new Error("Password already set");
       }
       password = newPassword;
     };
-
-    checkPassword(testPassword) {
+  
+    this.checkPassword = function(testPassword) {
       return password === testPassword;
     };
   }

@@ -1,0 +1,37 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Todo List App</title>
+</head>
+<body>
+  <h1>Todo List</h1>
+
+  <!-- Form to add a new todo -->
+  <form action="/todos" method="POST">
+    <input type="text" name="title" placeholder="Enter a new todo" required>
+    <button type="submit">Add Todo</button>
+  </form>
+
+  <h2>Tasks</h2>
+  <ul>
+    <% todos.forEach(todo => { %>
+      <li>
+        <span style="<%= todo.completed ? 'text-decoration: line-through;' : '' %>">
+          <%= todo.title %>
+        </span>
+        <!-- Form to toggle completion status -->
+        <form action="/todos/<%= todo._id %>/update" method="POST" style="display:inline;">
+          <button type="submit">
+            <%= todo.completed ? 'Mark as Pending' : 'Mark as Completed' %>
+          </button>
+        </form>
+        <!-- Form to delete a todo -->
+        <form action="/todos/<%= todo._id %>/delete" method="POST" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+    <% }); %>
+  </ul>
+</body>
+</html>

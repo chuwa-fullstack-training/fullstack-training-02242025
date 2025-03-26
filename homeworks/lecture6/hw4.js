@@ -5,5 +5,7 @@
  * @param {number} num
  */
 function format(num) {
-  // your code here
+  let [integer, fraction] = num.toString().split('.');
+  integer = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return fraction ? integer + "." + fraction : integer;
 }

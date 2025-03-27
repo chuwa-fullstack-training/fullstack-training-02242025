@@ -3,7 +3,7 @@ import React from "react";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { num: 0 };
+    this.state = { num: "" };
   }
   handleChange = (event) => {
     const inputValue = event.target.value;
@@ -22,6 +22,9 @@ class App extends React.Component {
         suffix = "rd";
       }
       return `${number}${suffix}`;
+    }
+    if(input === "") {
+      return ""
     }
   }
   render() {

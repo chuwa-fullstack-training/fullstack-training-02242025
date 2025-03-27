@@ -42,3 +42,47 @@
  *  }
  * }
  */
+
+const express = require('express');
+const axios = require('axios');
+const router = express.Router();
+
+router.get('/search', async (req, res)=> {
+    try{
+        const {query1, query2} = req.query;
+
+        if(!query1 || !query2){
+            return res.status(400).json({error: 'Both query 1 and query 2 are required'});
+        }
+
+        const [result1, result2] = await Promise.all([fetchApiResult(query1), fetchApiResult(query2)]);
+        const response = {
+            [query1]: result1.length>0? formatRes(result1[0]):null,
+            [query2]: result2.length>0? formatRes(result2[0]):null,
+        };
+        res.json(response);
+    }
+    catch(e){
+        console.error('Error:', e);
+        res.status(500).send('Internal Server Error.');
+    }
+});
+
+async function fetchApiResult(query) {
+    const url = `https://hn.algolia.com/api/v1/search?query=${encodeURIComponent(query)}&tags=story`;
+    const response = await axios.get(url);
+    return response.data.hits;
+}
+
+function formatRes(item){
+    return{
+        created_at: item.created_at,
+        title: item.title,
+        url: item.url,
+        author: item.author,
+        points: item.points,
+        objectID: item.objectID
+    }
+}
+
+module.exports = router;

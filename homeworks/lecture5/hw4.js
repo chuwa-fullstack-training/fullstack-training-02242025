@@ -12,8 +12,9 @@ Promise.resolve(1)
   .then(res => {
     console.log(res);
   });
-//1, 2
-//The Promise have the state resolved and pass 1 as res, so first the console will print 1, when pass 2 as res, there's no error so return 3 will not be executed, console will print 2;
+
+// 1, 2
+// the promise resolves, which calls the first then, and calls the second then
 
 // // 2
 Promise.reject(1)
@@ -28,6 +29,9 @@ Promise.reject(1)
   .then(res => {
     console.log(res);
   });
+//1 3
+//the promise rejects, which calls the catch function and calls the second then
+
 //1, 3
 //The promise have the status rejected, which raise an error, so the first .then() is not operated, it goes to the first .catch(), print 1 and set res to 3, then print 3 at the last .then();
 

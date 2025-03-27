@@ -19,3 +19,43 @@
  */
 
 // your code here
+
+const http = require('http');
+const url = require('url');
+
+const server = http.createServer((req, res)=>{
+    const parsedUrl = url.parse(req.url, true);
+    const iso = parsedUrl.query.iso;
+    const time = new Date(iso);
+
+    if(!iso || isNaN(time.getTime())){
+        res.writeHead(400, {'Content-Type':'application/json'});
+        return res.end(JSON.stringify({error: 'Invalid ISO'}));
+    }
+    if(parsedUrl.pathname ==='/api/parsetime'){
+        const response ={
+            hour: time.getHours(),
+            minute: time.getMinutes(),
+            second: time.getSeconds()
+        };
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify(response));
+    }
+    else if (parsedUrl.pathname==='/api/unixtime'){
+        const response ={
+            unixtime: time.getTime()
+        };
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify(response));
+    }
+    else{
+        res.writeHead(404, {'Content-Type': 'application/json'});
+        res.end(JSON.stringify({error: 'Not Found'}));
+    }
+
+});
+
+const port = process.env.PORT || 3000;
+server.listen(port, ()=>{
+    console.log(`Server listening on port ${port}`)
+});

@@ -5,8 +5,11 @@ const getAllEmployees = async (req, res) => {
   try {
     let employee;
 
-    if (req,user) {
-      employees = await Employee.find();
+    if (req.user) {
+      if (!req.user.company) {
+        return res.status(403).json({ message: 'Access denied: No company assigned' });
+      }
+      employees = await Employee.find({ company: req.user.company });
     } else {
       employees = await Employee.find().select('firstName lastName');
     }

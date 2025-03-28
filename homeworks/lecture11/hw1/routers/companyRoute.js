@@ -1,4 +1,5 @@
 const express = require('express');
+const auth = require('../middlewares/auth')
 const {
   getAllCompanies,
   getOneCompany,
@@ -9,7 +10,7 @@ const {
 
 const router = express.Router();
 
-router.get('/companies', getAllCompanies);
+router.get('/companies', auth, getAllCompanies);
 
 router.get('/companies/:id', getOneCompany);
 

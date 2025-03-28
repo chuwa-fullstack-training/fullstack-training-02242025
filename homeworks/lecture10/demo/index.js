@@ -1,6 +1,7 @@
 const express = require('express');
 
 const app = express();
+const port = 2000
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -32,6 +33,6 @@ app.put('/api/todos/:id', (req, res) => {
   res.json(todo);
 });
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+app.listen(2000, () => {
+  console.log('Server is running on port 2000');
 });

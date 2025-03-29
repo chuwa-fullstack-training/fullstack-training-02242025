@@ -21,8 +21,8 @@ mongoose
 
 app.use(express.json())
 app.use('/api/auth', authRoutes) 
-app.use('/api/companies', companyRoutes)
-app.use('/api/employee', employeeRoutes)
+app.use('/companies', companyRoutes)
+app.use('/employee', employeeRoutes)
 
 app.listen(port, () => {
     console.log(`App listening on port ${port}`)

@@ -14,3 +14,28 @@
  */
 
 // your code here
+const fs = require('fs');
+const path = require('path');
+
+const directoryPath = process.argv[2];
+const extensionFilter = process.argv[3];
+
+if (!directoryPath || !extensionFilter) {
+    console.error('wrong Usage: node hw1.js <directory> <extension>');
+    process.exit(1);
+}
+
+fs.readdir(directoryPath, (err, files) => {
+  if (err) {
+    console.error('Failed to read directory:', err.message);
+    return;
+  }
+
+  const ext = '.' + extensionFilter;
+
+  files.forEach(file => {
+    if (path.extname(file) === ext) {
+      console.log(file);
+    }
+  });
+});

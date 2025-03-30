@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+</head>
+<body>
+  <h1>Welcome to the Home Page</h1>
+
+  <% if (Object.keys(locals).length > 0) { %>
+    <h2>Submitted Data:</h2>
+    <ul>
+      <% for (const key in locals) { %>
+        <li><strong><%= key %>:</strong> <%= locals[key] %></li>
+      <% } %>
+    </ul>
+  <% } %>
+
+  <form action="/create-post" method="POST">
+    <input type="text" name="name" placeholder="Enter your name" required />
+    <input type="text" name="message" placeholder="Enter a message" required />
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

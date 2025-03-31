@@ -9,7 +9,7 @@ const EmployeeSchema = new Schema({
   jobTitle: String,
   resigned: Boolean,
   salary: Number,
-  manager: { type: Schema.Types.ObjectId, ref: 'Employee' },
+  manager: { type: Schema.Types.ObjectId, ref: 'Employee' }
 });
 
 module.exports = mongoose.model('Employee', EmployeeSchema);

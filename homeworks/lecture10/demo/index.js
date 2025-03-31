@@ -1,37 +1,45 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const path = require('path');
+const Todo = require('./models/Todo');
 
 const app = express();
 
-app.use(express.static('public'));
+// Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/todoapp').then(() => console.log('MongoDB connected'));
+
+// Middleware
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// View engine
 app.set('view engine', 'pug');
-app.set('views', './views');
+app.set('views', path.join(__dirname, 'views'));
 
-const todos = [
-  { id: 1, todo: 'first thing', done: true },
-  { id: 2, todo: 'second thing', done: false },
-  { id: 3, todo: 'third thing', done: false }
-];
-
-app.get('/', (req, res) => {
+// Routes
+app.get('/', async (req, res) => {
+  const todos = await Todo.find().lean();
   res.render('index', { todos });
 });
 
-app.post('/api/todos', (req, res) => {
-  const todo = req.body.todo;
-  todos.push({ id: todos.length + 1, todo, done: false });
-  res.json(todos);
-});
-
-app.put('/api/todos/:id', (req, res) => {
-  const id = parseInt(req.params.id, 10);
-  const todo = todos.find(t => t.id === id);
-  todo.done = !todo.done;
+app.post('/api/todos', async (req, res) => {
+  const todo = new Todo({ todo: req.body.todo });
+  await todo.save();
   res.json(todo);
 });
 
+app.put('/api/todos/:id', async (req, res) => {
+  const todo = await Todo.findById(req.params.id);
+  if (todo) {
+    todo.done = !todo.done;
+    await todo.save();
+    res.json(todo);
+  } else {
+    res.status(404).json({ error: 'Todo not found' });
+  }
+});
+
 app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+  console.log('Server running at http://localhost:3000');
 });

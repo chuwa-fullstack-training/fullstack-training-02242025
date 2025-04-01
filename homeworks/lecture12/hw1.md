@@ -10,3 +10,5 @@
 ```
 
 Turn the HTML above into React components and display
+
+** Please Find HW1, HW2, HW3, HW4 in `lec12/src/components` in React app.

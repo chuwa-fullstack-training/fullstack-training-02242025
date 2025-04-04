@@ -1,0 +1,63 @@
+.phone {
+    width: 280px;
+    height: 500px;
+    margin: 40px auto;
+    border: 2px solid #999;
+    border-radius: 36px;
+    background-color: white;
+    padding: 85px 10px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .board {
+    background-color: #4b84d9;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .status-bar,
+  .click-result {
+    width: cal(100% - 2px);
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    background-color: #5f93e6;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    border: 1px dashed #ddd;
+    margin: 1px;
+    border-radius: 4px;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+    justify-items: center;
+    align-items: center;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+  
+  .btn {
+    width: 48px;
+    height: 48px;
+    background-color: #f1f5f9;
+    color: #111;
+    font-size: 28px;
+    font-weight: bold;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #e0ebff;
+    transform: scale(1.05);
+  }
+  

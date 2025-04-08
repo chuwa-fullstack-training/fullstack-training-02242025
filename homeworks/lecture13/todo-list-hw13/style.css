@@ -1,0 +1,38 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.app {
+  background: white;
+  width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+button {
+  margin-right: 5px;
+  padding: 5px 10px;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}

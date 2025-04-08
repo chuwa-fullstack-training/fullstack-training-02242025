@@ -1,0 +1,73 @@
+.App {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.login-form {
+  width: 500px;
+}
+
+.form-element {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+#username,
+#password {
+  height: 30px;
+  margin-top: 10px;
+}
+
+.table-section {
+  max-width: 30%;
+  border-collapse: collapse;
+}
+
+.table-section tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.table-section th,
+.table-section td {
+  padding: 10px 16px;
+  text-align: left;
+}
+
+.table-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-card {
+  margin-left: 0;
+  margin-right: auto;
+  width: 400px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.user-card img {
+  width: 300px;
+  height: auto;
+  object-fit: cover;
+}
+
+ul {
+  padding-left: 30px;
+  list-style-type: none;
+}
+
+.user-card .repo-item a {
+  color: #2a76d2;
+  text-decoration: none;
+}

@@ -1,0 +1,51 @@
+.app {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.controls {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.controls select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 120px;
+  cursor: pointer;
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.color-box {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 20px;
+  min-height: 150px;
+}
+
+.component-name {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.component-name label {
+  color: #666;
+  font-size: 14px;
+}
+
+.component-name input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+}

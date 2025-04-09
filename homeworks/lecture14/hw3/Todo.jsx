@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./todo.css";
 
 export default function Todo() {
   const [inputValue, setInputValue] = useState("");
   const [todoList, setTodoList] = useState([]);
+  const [isAllDoneChecked, setAllDoneChecked] = useState(false);
 
   const remaining = todoList.filter((todo) => !todo.isCompleted).length;
 
@@ -29,13 +29,18 @@ export default function Todo() {
 
   const setAllComplete = (e) => {
     const done = todoList.every((todo) => todo.isCompleted);
+
     if ((e.target.checked && !done) || (!e.target.checked && done)) {
       setTodoList(todoList.map((todo) => ({ ...todo, isCompleted: !done })));
     }
+
+    if (isAllDoneChecked) setAllDoneChecked(false);
+    else setAllDoneChecked(true);
   };
 
   const clearComplete = () => {
     setTodoList(todoList.map((todo) => ({ ...todo, isCompleted: false })));
+    setAllDoneChecked(false);
   };
 
   return (
@@ -58,7 +63,11 @@ export default function Todo() {
         </button>
       </div>
       <label className="markDone">
-        <input type="checkbox" onChange={setAllComplete} />
+        <input
+          type="checkbox"
+          checked={isAllDoneChecked}
+          onChange={setAllComplete}
+        />
         Mark All Done
       </label>
       <ul className="todoList">

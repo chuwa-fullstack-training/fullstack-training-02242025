@@ -24,7 +24,6 @@ fs.readdir(dirPath, (err, files) => {
     return console.error('Error reading directory:', err.message);
   }
 
-  // Filter and print files with the given extension
   files.forEach(file => {
     if (path.extname(file) === extFilter) {
       console.log(file);

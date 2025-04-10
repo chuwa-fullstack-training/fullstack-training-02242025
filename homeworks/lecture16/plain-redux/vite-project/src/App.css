@@ -1,0 +1,30 @@
+.container {
+  width: 300px;
+  margin: 40px auto;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.input-area {
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 5px;
+  width: 70%;
+}
+
+button {
+  margin: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 5px 0;
+}

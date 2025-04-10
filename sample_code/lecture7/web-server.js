@@ -39,7 +39,9 @@ const server = http.createServer((req, res) => {
 
       req.on('end', () => {
         const parsedBody = Buffer.concat(body).toString();
+        console.log(parsedBody);
         const queryParams = new URLSearchParams(parsedBody);
+        console.log(queryParams);
         const title = queryParams.get('title');
         const content = queryParams.get('content');
 

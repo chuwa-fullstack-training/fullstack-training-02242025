@@ -1,0 +1,65 @@
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+  }
+  
+  .input {
+    width: 100%;
+    height: 45px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+  }
+  
+  .input:focus {
+    border: 4px solid #add8e6;
+    outline: none;
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+  }
+  
+  .clearButton {
+    margin: 5px 0;
+    border: 1px solid #777;
+    border-radius: 5px;
+    background-color: white;
+  }
+  
+  .clearButton:active {
+    outline: none;
+    border: 4px solid #ccc;
+  }
+  
+  .clearButton:hover {
+    background-color: gray;
+  }
+  
+  .markDone {
+    font-size: 14px;
+  }
+  
+  .todoList {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .todoItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    height: 40px;
+    padding: 10px;
+  }
+  
+  .todoItem:last-child {
+    border-bottom: none;
+  }
+  

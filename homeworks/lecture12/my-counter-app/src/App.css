@@ -1,0 +1,44 @@
+.counter-container {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  font-family: Arial, sans-serif;
+}
+
+.counter-display {
+  font-size: 48px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+.button-group {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.button-group button {
+  padding:10px 20px;
+  font-size: 20px;
+  background-color: #9e9c9c;
+  color: black;
+  border-right: 1px solid #666;
+  transition: background-color 0.3s;
+}
+
+.button-group button:hover {
+  background-color: #6d6d6d;
+}
+
+.reset-button {
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: #9e9c9c;
+  color: black;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.reset-button:hover {
+  background-color: #6d6d6d;
+}

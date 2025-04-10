@@ -1,0 +1,35 @@
+.converter-app {
+  display: flex;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  max-width: 400px;
+
+}
+
+.input-box, .output-box {
+  flex: 1;
+  max-width: 200px;
+}
+
+.converter-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.converter-input:focus {
+  outline: none;
+  border-color: #d5dfd5;
+  box-shadow: 0 0 0 2px rgba(23, 30, 23, 0.2);
+}
+
+.converter-output {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  min-height: 20px;
+}

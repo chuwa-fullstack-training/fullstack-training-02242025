@@ -1,0 +1,79 @@
+/* Main container */
+.todo-app {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Input section */
+  .todo-input input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  
+  /* Button group */
+  .button-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Button styles */
+  .btn {
+    padding: 8px 16px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .btn-check-all {
+    background-color: #4CAF50;
+  }
+  
+  .btn-clear-all {
+    background-color: #f44336;
+  }
+  
+  /* Todo list */
+  .todo-list {
+    margin-top: 10px;
+  }
+  
+  /* Todo items */
+  .todo-item {
+    display: flex;
+    padding: 8px;
+    margin-bottom: 4px;
+    align-items: center;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+  }
+  
+  .todo-checkbox {
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  
+  .todo-text {
+    flex-grow: 1;
+  }
+  
+  /* Completed todo */
+  .todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: #888;
+  }
+  
+  /* Remaining count */
+  .remaining-count {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+  }

@@ -1,0 +1,97 @@
+/* iPhone Frame Styling */
+.iphone-frame {
+  width: 400px;
+  height: 800px;
+  border: 2px solid #000; /* 简单的黑色边框 */
+  margin: 20px auto;
+  position: relative;
+  border-radius: 50px;
+  overflow: hidden; /* 防止内容溢出 */
+  display: flex;
+  flex-direction: column;
+  background: #f7f7f7; /* 内部背景色 */
+}
+
+.blue-wrapper {
+  background: #0c54a2; /* iOS-style blue */
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 80px; /* Push the whole group down */
+  margin-left: 10px; /* Push the whole group down */
+  margin-right: 10px; /* Push the whole group down */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.iphone-screen {
+  width: 100%;
+  height: 100%;
+  background: #f7f7f7;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Display Area */
+.phone-display {
+    align-items: center;
+  justify-content: flex-end;
+  padding: 0 20px;
+  font-size: 48px;
+  background: white;
+  margin: 10px;
+  border-radius: 10px;
+  min-height: 80px;
+}
+
+.placeholder {
+  color: #ccc;
+  font-size: 24px;
+}
+
+/* Number Pad */
+.phone-number-pad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
+  background: transparent;
+}
+
+.phone-button {
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 8px;
+
+  background: white;
+  color: #000;
+  font-size: 24px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  font-weight: bold; 
+
+}
+
+/* Control Buttons */
+.phone-controls {
+  padding: 10px 20px 30px;
+  display: flex;
+  justify-content: center;
+  background: transparent;
+}
+
+.phone-clear-button {
+  padding: 12px 30px;
+  background: #ff3b30;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

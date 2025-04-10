@@ -1,42 +1,41 @@
 import React, { useState } from "react";
-import "./todo.css";
+import { useSelector, useDispatch } from "react-redux";
+import { addTodo, toggleTodo, setAllCompleted } from "./redux/actions";
 
 export default function Todo() {
   const [inputValue, setInputValue] = useState("");
-  const [todoList, setTodoList] = useState([]);
+  const [isAllDoneChecked, setAllDoneChecked] = useState(false);
 
-  const remaining = todoList.filter((todo) => !todo.isCompleted).length;
+  const todos = useSelector((state) => state.todos);
+  const dispatch = useDispatch();
 
   const handleAddTodo = (e) => {
     if (e.key === "Enter" && inputValue.trim()) {
-      const newTodo = {
-        id: Date.now(),
-        text: inputValue.trim(),
-        isCompleted: false,
-      };
-      setTodoList([...todoList, newTodo]);
+      dispatch(addTodo(inputValue.trim()));
       setInputValue("");
     }
   };
 
-  const toggleComplete = (id) => {
-    setTodoList(
-      todoList.map((todo) =>
-        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
-      )
-    );
+  const handleToggleTodo = (id) => {
+    dispatch(toggleTodo(id));
   };
 
-  const setAllComplete = (e) => {
-    const done = todoList.every((todo) => todo.isCompleted);
+  const handleSetAllCompleted = (e) => {
+    const done = todos.every((todo) => todo.completed);
+
     if ((e.target.checked && !done) || (!e.target.checked && done)) {
-      setTodoList(todoList.map((todo) => ({ ...todo, isCompleted: !done })));
+      dispatch(setAllCompleted(e.target.checked));
     }
+
+    setAllDoneChecked(!isAllDoneChecked);
   };
 
   const clearComplete = () => {
-    setTodoList(todoList.map((todo) => ({ ...todo, isCompleted: false })));
+    dispatch(setAllCompleted(false));
+    setAllDoneChecked(false);
   };
+
+  const remaining = todos.filter((todo) => !todo.completed).length;
 
   return (
     <div className="container">
@@ -58,17 +57,21 @@ export default function Todo() {
         </button>
       </div>
       <label className="markDone">
-        <input type="checkbox" onChange={setAllComplete} />
+        <input
+          type="checkbox"
+          checked={isAllDoneChecked}
+          onChange={handleSetAllCompleted}
+        />
         Mark All Done
       </label>
       <ul className="todoList">
-        {todoList.map((todo) => (
+        {todos.map((todo) => (
           <li className="todoItem" key={todo.id}>
             <label>
               <input
                 type="checkbox"
-                checked={todo.isCompleted}
-                onChange={() => toggleComplete(todo.id)}
+                checked={todo.completed}
+                onChange={() => handleToggleTodo(todo.id)}
               />
               {todo.text}
             </label>

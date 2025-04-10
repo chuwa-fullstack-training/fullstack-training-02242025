@@ -1,0 +1,33 @@
+.container {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    padding: 20px;
+    font-size: 24px;
+    background-color: #ccc;
+    border: 3px solid #666;
+    box-shadow: 5px 5px 10px #888;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #bbb;
+    box-shadow: 0 0 10px #66f;
+    transform: scale(1.05);
+  }
+  
+  .count-display {
+    font-size: 64px;
+    font-weight: bold;
+  }
+  

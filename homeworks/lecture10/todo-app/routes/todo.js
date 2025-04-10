@@ -7,7 +7,8 @@ const Todo = require('../models/Todo');
 router.get('/', async (req, res) => {
 try {
     const todos = await Todo.find();
-    res.render('index', { todos });
+    const remainingCount = todos.filter(todo => !todo.completed).length;
+    res.render('index', { todos, remainingCount });
 } catch (err) {
     res.status(500).send(err);
 }

@@ -4,12 +4,9 @@ const path = require('path');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/todo-app', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+mongoose.connect('mongodb://localhost:27017/todoDB')
   .then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('MongoDB connection error:', err));
+  .catch(err => console.error('MongoDB error:', err));
   
 
 app.use(express.urlencoded({ extended: true }));

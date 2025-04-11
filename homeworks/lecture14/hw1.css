@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    font-family: sans-serif;
+  }
+  
+  .user-list {
+    flex: 1;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  img.avatar {
+    width: 100px;
+    border-radius: 50%;
+  }
+  
+  .profile {
+    flex: 1;
+  }
+  
+  .card {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    background: white;
+  }
+  
+  .card ul {
+    padding-left: 20px;
+  }
+  
+  .card li {
+    margin-bottom: 10px;
+  }
+  

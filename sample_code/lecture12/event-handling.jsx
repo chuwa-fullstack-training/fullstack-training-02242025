@@ -6,7 +6,7 @@ class App extends React.Component {
     this.state = {
       count: 0
     };
-    // this.handleClick = this.handleClick.bind(this); need to use this if the handleclick method is not arrow function
+    // this.handleClick = this.handleClick.bind(this); eactly yhe same as define it putside contructor as arrpw func
   }
 
   //handleClick() { }

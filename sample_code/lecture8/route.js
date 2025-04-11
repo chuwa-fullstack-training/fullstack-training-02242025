@@ -9,7 +9,7 @@ const postRouter = require('./routers/post');
 app.use('/api', userRouter);
 app.use('/api', postRouter);
 
-//static放在前面 如果有和get一个url的request，只运行static里面的html
+//static放在前面 如果有和get的url request，只运行static里面的html 比如有home文件名 必须home.html
 app.use(express.static('public'));
 
 app.get('/home/:name', (req, res, next) => {

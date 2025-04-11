@@ -52,6 +52,7 @@ export default App;
 // Methods like handleClick() are stored on the prototype (shared across instances).
 
 // If you use an arrow function for methods, it becomes an instance property (useful for event handlers in React).
+//this is a class field "=" to assign property directly on instance, same as define this.method = inside ocnstructor
 
 // Class fields (state = {}) are just syntactic sugar for assigning properties inside the constructor.
 

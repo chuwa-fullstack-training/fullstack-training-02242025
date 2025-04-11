@@ -61,6 +61,9 @@ function throttle(func, delay) {
     }
   };
 }
+const throttledLog = throttle(obj.logMessage, 2000);
+throttledLog.call(obj);
+
 
 //When calling func.apply(this, args) inside a wrapper function (like in throttle),
 //this depends on how the wrapper function itself is called
@@ -71,6 +74,7 @@ const obj = {
   }
 };
 
+//anotherway:
 const throttledLog = throttle(obj.logMessage.bind(obj), 2000);
 
 setInterval(() => {

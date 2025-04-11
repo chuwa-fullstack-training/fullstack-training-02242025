@@ -37,7 +37,7 @@ class App extends React.Component {
     this.inputRef = React.createRef();
   }
 
-  // Add a new todo
+  // Add a new todo, a calss field is instance property and this inside arrow bind to the App instance when constructor executed
   addTodo = (event) => {
     if (event.key === "Enter" && this.inputRef.current.value.trim() !== "") {
       const cur_input = this.inputRef.current.value; // Local variable

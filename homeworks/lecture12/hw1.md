@@ -10,3 +10,5 @@
 ```
 
 Turn the HTML above into React components and display
+
+https://codesandbox.io/p/sandbox/s2mnz6?file=%2Fsrc%2FApp.js%3A10%2C16

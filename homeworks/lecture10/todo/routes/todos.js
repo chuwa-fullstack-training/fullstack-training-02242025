@@ -1,36 +1,31 @@
-const express = require('express');
+// backend/routes/todos.js
+const express = require("express");
 const router = express.Router();
-const Todo = require('../models/Todo');
+const Todo = require("../models/Todo");
 
-// GET all todos
-router.get('/', async (req, res) => {
-  const todos = await Todo.find().sort({ createdAt: -1 });
-  res.render('index', { todos });
+// GET
+router.get("/api/todos", async (req, res) => {
+  const todos = await Todo.find();
+  res.json(todos);
 });
 
-// POST a new todo
-router.post('/', async (req, res) => {
-  const { title } = req.body;
-  if (title.trim()) {
-    await Todo.create({ title });
-  }
-  res.redirect('/');
+// POST
+router.post("/api/todos", async (req, res) => {
+  const newTodo = new Todo({ task: req.body.task });
+  await newTodo.save();
+  res.json(newTodo);
 });
 
-// POST toggle completion
-router.post('/toggle/:id', async (req, res) => {
-  const todo = await Todo.findById(req.params.id);
-  if (todo) {
-    todo.completed = !todo.completed;
-    await todo.save();
-  }
-  res.redirect('/');
+// PATCH (toggle)
+router.patch("/api/todos/:id", async (req, res) => {
+  const updated = await Todo.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  res.json(updated);
 });
 
-// POST delete todo
-router.post('/delete/:id', async (req, res) => {
+// DELETE (optional)
+router.delete("/api/todos/:id", async (req, res) => {
   await Todo.findByIdAndDelete(req.params.id);
-  res.redirect('/');
+  res.json({ success: true });
 });
 
 module.exports = router;

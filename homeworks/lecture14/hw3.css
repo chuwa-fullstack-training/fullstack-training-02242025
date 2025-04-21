@@ -1,0 +1,28 @@
+.todo-container {
+    width: 400px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .todo-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .todo-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .todo-list li {
+    padding: 6px 0;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+  

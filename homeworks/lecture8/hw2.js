@@ -42,3 +42,51 @@
  *  }
  * }
  */
+const axios = require('axios');
+app.get('/hw2', async (req, res) => {
+    const { query1, query2 } = req.query;
+
+    if (!query1 || !query2) {
+        return res.status(400).json({ error: 'Missing query1 or query2' });
+    }
+
+    const makeRequest = async (query) => {
+        try {
+            const response = await axios.get('https://hn.algolia.com/api/v1/search', {
+                params: {
+                    query,
+                    tags: 'story',
+                }
+            });
+
+            const hit = response.data.hits[0];
+
+            if (!hit) {
+                return {
+                    created_at: null,
+                    title: 'No result found'
+                };
+            }
+
+            return {
+                created_at: hit.created_at,
+                title: hit.title
+            };
+        } catch (err) {
+            return {
+                created_at: null,
+                title: `Error: ${err.message}`
+            };
+        }
+    };
+
+    const [res1, res2] = await Promise.all([
+        makeRequest(query1),
+        makeRequest(query2)
+    ]);
+
+    res.json({
+        [query1]: res1,
+        [query2]: res2
+    });
+});

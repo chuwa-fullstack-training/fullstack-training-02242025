@@ -13,4 +13,29 @@
  *    e.g. node hw1.js currentDir txt - process.argv[2] is `currentDir`, process.argv[3] is `txt`
  */
 
-// your code here
+const fs = require('fs');
+const path = require('path');
+
+let dir = process.argv[2];
+let ext = '.' + process.argv[3];
+
+if (!dir || !ext || ext === '.') {
+  dir = __dirname;
+  ext = '.js';
+}
+
+console.log("查找目录：", dir);
+console.log("查找扩展名：", ext);
+
+function printFiles(p = __dirname, extension = '.js') {
+  fs.readdir(p, (err, files) => {
+    if (err) throw err;
+    files.forEach(file => {
+      if (path.extname(file) === extension) {
+        console.log(file);
+      }
+    });
+  });
+}
+
+printFiles(dir, ext);

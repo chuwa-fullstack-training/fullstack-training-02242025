@@ -1,37 +1,24 @@
+// demo/index.js（
 const express = require('express');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const path = require('path');
+const todoRoutes = require('./routes/todo'); 
+
+dotenv.config(); //.env MongoDB
 
 const app = express();
-
-app.use(express.static('public'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
 app.set('view engine', 'pug');
-app.set('views', './views');
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-const todos = [
-  { id: 1, todo: 'first thing', done: true },
-  { id: 2, todo: 'second thing', done: false },
-  { id: 3, todo: 'third thing', done: false }
-];
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.error("DB error", err));
 
-app.get('/', (req, res) => {
-  res.render('index', { todos });
-});
-
-app.post('/api/todos', (req, res) => {
-  const todo = req.body.todo;
-  todos.push({ id: todos.length + 1, todo, done: false });
-  res.json(todos);
-});
-
-app.put('/api/todos/:id', (req, res) => {
-  const id = parseInt(req.params.id, 10);
-  const todo = todos.find(t => t.id === id);
-  todo.done = !todo.done;
-  res.json(todo);
-});
+  app.use('/', todoRoutes);
 
 app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+  console.log('Todo app listening at http://localhost:3000');
 });

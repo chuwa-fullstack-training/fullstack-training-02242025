@@ -1,0 +1,48 @@
+.phone-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #222;
+  }
+  
+  .phone-screen {
+    width: 300px;
+    background-color: #fff;
+    border: 2px solid #999;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  .display {
+    background-color: #000;
+    color: limegreen;
+    font-size: 24px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-family: 'Courier New', monospace;
+  }
+  
+  .panel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  
+  .phone-button {
+    padding: 15px 0;
+    font-size: 18px;
+    background-color: #eee;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .phone-button:hover {
+    background-color: #ddd;
+  }
+  

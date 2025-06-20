@@ -4,6 +4,7 @@
 * This function does not handle getters and setters or copy attributes.
 */
 function extend(o, p) {
+    //在 JavaScript 中，enumerable 是一个属性特性，用来控制一个对象的属性是否可以被枚举，也就是是否能被 for...in 循环或 Object.keys() 等方法遍历到。
     // implement your code here
     for(let key in p) {
         if (p.hasOwnProperty(key)) {

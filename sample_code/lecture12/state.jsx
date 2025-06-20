@@ -19,6 +19,7 @@ class App extends React.Component {
   //so it’s available on all instances of the component.
 
   //state is updated by merging with original state
+  
   handleClick = () => {
     //one way: this.setState({ count: this.state.count + 1 });
     //another way using callback function
@@ -38,7 +39,7 @@ class App extends React.Component {
     //syntax: setState((prevState, props) => newState)
     this.setState({ counter: this.state.counter + 1 }, () => {
       console.log('in setState callback, counter: ', this.state.counter);
-    });
+    }); //能拿到最新值
     console.log('after setState, counter: ', this.state.counter);
     // this.setState(prevState => ({ counter: prevState.counter + 1 }));
     // this.setState(prevState => ({ counter: prevState.counter + 1 }));

@@ -18,6 +18,7 @@ function extend(o, p) {
 * Return a new object that holds the properties of both o and p.
 * If o and p have properties by the same name, the values from o are used.
 */
+
 function union(o, p) {
     // implement your code here
     let union = {}

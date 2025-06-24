@@ -1,6 +1,9 @@
+//move declarations to the top of current scope, only for var
+
 function test() {
-  var myVar;
   console.log(myVar); // Outputs: undefined
+  var myVar;
+  //console.log(myVar); // Outputs: undefined
   myVar = 'Hello, World!';
 }
 test();

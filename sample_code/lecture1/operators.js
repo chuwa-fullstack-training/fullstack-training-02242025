@@ -95,3 +95,6 @@ console.log('Logical NOT (q):', logicalNotQ); // Output: true
 let age = 20;
 let isAdult = age >= 18 ? 'Adult' : 'Not Adult';
 console.log('Is Adult:', isAdult); // Output: "Adult"
+
+//&&特别操作方式
+let oo; oo&&oo.name;//Output undefined, if just using oo.name will show err as cannot read properties of undefined，不会报错

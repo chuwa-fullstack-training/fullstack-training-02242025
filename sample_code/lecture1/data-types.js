@@ -29,6 +29,8 @@ let bool = true;
 console.log(bool);  // Outputs: true
 console.log(typeof bool);  // Outputs: boolean
 console.log(Boolean(0));  // Outputs: false
+console.log(Boolean(undefined));  // Outputs: false
+console.log(Boolean([]));  // Outputs: true
 
 // Object data type
 let obj = {name: "John", age: 30};
